@@ -2,7 +2,7 @@
 
 > Open-source research and development for embedded systems and beyond
 
-Akaththi Labs is the open-source research arm of [Akaththi Farms](https://github.com/akaththi-labs), focused on building robust, production-grade libraries and tools for embedded systems, sensors, and IoT infrastructure.
+Akaththi Labs is the open-source research arm of Akaththi Farms, focused on building robust, production-grade libraries and tools for embedded systems, sensors, and IoT infrastructure.
 
 ## Mission
 
