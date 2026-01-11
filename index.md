@@ -217,7 +217,7 @@ This repository: [MIT License](https://github.com/akaththi-labs/akaththi-labs/bl
 <footer>
   <div class="footer-content">
     <div class="footer-branding">
-      <strong>Akaththi Labs</strong> • Open Source Research • Embedded Systems
+      <strong>Akaththi Labs</strong> • An open source research arm of Akaththi Farms
     </div>
     <div class="footer-links">
       <a href="https://github.com/akaththi-labs">GitHub Organization</a>
@@ -225,6 +225,9 @@ This repository: [MIT License](https://github.com/akaththi-labs/akaththi-labs/bl
       <a href="https://github.com/akaththi-labs/akaththi-labs/issues">Issues</a>
       <span>•</span>
       <a href="https://github.com/akaththi-labs/akaththi-labs/blob/main/LICENSE">MIT License</a>
+    </div>
+    <div class="footer-copyright">
+      <p>© 2026 Akaththi Labs. Released under the MIT License.</p>
     </div>
   </div>
 </footer>
