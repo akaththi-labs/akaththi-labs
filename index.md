@@ -9,34 +9,82 @@ title: Akaththi Labs - Open Source Research
   <p class="hero-description">Building robust, production-grade libraries and tools for embedded systems, sensors, and IoT infrastructure</p>
 </div>
 
-## Mission
-
-We develop and maintain open-source software that solves real-world problems in agriculture, environmental monitoring, and industrial automation. Our work is driven by practical needs and shared freely with the community.
-
-Akaththi Labs is the open-source research arm of Akaththi Farms. We believe in building tools that work, sharing them openly, and fostering a community of developers who value quality and practicality.
+<div class="section-intro">
+  <h2>Mission</h2>
+  <p class="large-text">We develop and maintain open-source software that solves real-world problems in agriculture, environmental monitoring, and industrial automation. Our work is driven by practical needs and shared freely with the community.</p>
+</div>
 
 ---
 
-## Domains
+## Build for embedded systems from idea to production
 
-### Active: Embedded Systems
+Akaththi Labs is the open-source research arm of Akaththi Farms. We believe in building tools that work, sharing them openly, and fostering a community of developers who value quality and practicality.
 
-Our primary focus is on embedded firmware and sensor libraries for resource-constrained environments.
+<div class="feature-grid">
+  <div class="feature-card">
+    <h3>ESP-IDF Platform</h3>
+    <p>Production-ready libraries for Espressif's IoT Development Framework. Field-tested sensor drivers, abstraction layers, and utilities for building reliable embedded systems.</p>
+  </div>
+  
+  <div class="feature-card">
+    <h3>FreeRTOS Integration</h3>
+    <p>Real-time operating system components optimized for resource-constrained environments. Power-efficient task scheduling and sensor polling strategies.</p>
+  </div>
+  
+  <div class="feature-card">
+    <h3>Sensor Libraries</h3>
+    <p>High-quality drivers for I2C/SPI sensors including temperature, humidity, pressure, and CO₂. Calibration tools and filtering utilities included.</p>
+  </div>
+  
+  <div class="feature-card">
+    <h3>Low-Power Wireless</h3>
+    <p>Communication protocols designed for battery-powered IoT devices. Efficient data transmission with minimal power consumption.</p>
+  </div>
+</div>
 
-**Core Technologies:**
-- **ESP-IDF** (Espressif IoT Development Framework)
-- **FreeRTOS** real-time operating system
-- **Sensor Integration** for I2C/SPI devices
-- **Low-power Protocols** for wireless communication
+---
 
-### Planned Domains
+## Active Research Domains
 
-Future research areas we're exploring:
+### Embedded Systems
 
-- **Edge Computing** — ML inference on embedded devices
-- **Mesh Networking** — LoRa and distributed protocols
-- **Time-Series Infrastructure** — Databases optimized for sensor data
-- **Agricultural Tech** — Precision farming tools and analytics
+<div class="domain-section">
+  <div class="domain-content">
+    <p>Our primary focus is on embedded firmware and sensor libraries for resource-constrained environments. We're building the foundation for reliable, production-grade IoT systems.</p>
+    
+    <div class="tech-badges">
+      <span class="badge">ESP-IDF</span>
+      <span class="badge">FreeRTOS</span>
+      <span class="badge">I2C/SPI</span>
+      <span class="badge">Low-Power</span>
+      <span class="badge">Wireless</span>
+    </div>
+  </div>
+</div>
+
+### Planned Research Areas
+
+<div class="planned-grid">
+  <div class="planned-card">
+    <h4>Edge Computing</h4>
+    <p>ML inference on embedded devices for real-time decision making</p>
+  </div>
+  
+  <div class="planned-card">
+    <h4>Mesh Networking</h4>
+    <p>LoRa and distributed protocols for resilient communication</p>
+  </div>
+  
+  <div class="planned-card">
+    <h4>Time-Series Infrastructure</h4>
+    <p>Databases optimized for high-frequency sensor data</p>
+  </div>
+  
+  <div class="planned-card">
+    <h4>Agricultural Tech</h4>
+    <p>Precision farming tools and environmental analytics</p>
+  </div>
+</div>
 
 ---
 
@@ -44,40 +92,76 @@ Future research areas we're exploring:
 
 ### ESP-IDF Sensor Libraries
 
-High-quality sensor drivers and libraries for the ESP-IDF platform, field-tested in production environments.
-
-**What We're Building:**
-- Sensor abstraction layers for I2C/SPI devices
-- Calibration and filtering utilities
-- Power-efficient sensor polling strategies
-- Environmental sensor drivers (temperature, humidity, pressure, CO₂)
-
-> **Note**: Individual project repositories will be created as components mature and are ready for public release.
+<div class="project-highlight">
+  <p class="project-description">High-quality sensor drivers and libraries for the ESP-IDF platform, field-tested in production environments across agriculture and environmental monitoring applications.</p>
+  
+  <div class="project-features">
+    <div class="project-feature">
+      <h4>Abstraction Layers</h4>
+      <p>Unified interfaces for I2C/SPI sensor communication</p>
+    </div>
+    
+    <div class="project-feature">
+      <h4>Calibration Tools</h4>
+      <p>Built-in calibration and filtering utilities for accurate readings</p>
+    </div>
+    
+    <div class="project-feature">
+      <h4>Power Efficiency</h4>
+      <p>Optimized polling strategies for battery-powered devices</p>
+    </div>
+    
+    <div class="project-feature">
+      <h4>Environmental Sensors</h4>
+      <p>Temperature, humidity, pressure, and CO₂ drivers</p>
+    </div>
+  </div>
+  
+  <blockquote class="note">
+    <strong>Note:</strong> Individual project repositories will be created as components mature and are ready for public release.
+  </blockquote>
+</div>
 
 ---
 
 ## Why Akaththi Labs?
 
-**Open source first**  
-All projects are open source under permissive licenses. No paywalls, no premium tiers.
-
-**Production focused**  
-Code designed for real-world deployment and reliability, not proof-of-concepts.
-
-**Community driven**  
-Built with and for the embedded systems community. Your contributions matter.
-
-**Research backed**  
-Grounded in practical research and extensive field testing.
-
-**Not a SaaS platform**  
-We build libraries and tools, not hosted services.
-
-**Not commercial software**  
-No paid features, subscriptions, or commercial licensing requirements.
-
-**Not vaporware**  
-We ship working code for real problems we've encountered in production.
+<div class="principles-grid">
+  <div class="principle-card positive">
+    <h3>✓ Open Source First</h3>
+    <p>All projects are open source under permissive licenses. No paywalls, no premium tiers.</p>
+  </div>
+  
+  <div class="principle-card positive">
+    <h3>✓ Production Focused</h3>
+    <p>Code designed for real-world deployment and reliability, not proof-of-concepts.</p>
+  </div>
+  
+  <div class="principle-card positive">
+    <h3>✓ Community Driven</h3>
+    <p>Built with and for the embedded systems community. Your contributions matter.</p>
+  </div>
+  
+  <div class="principle-card positive">
+    <h3>✓ Research Backed</h3>
+    <p>Grounded in practical research and extensive field testing.</p>
+  </div>
+  
+  <div class="principle-card negative">
+    <h3>✗ Not SaaS</h3>
+    <p>We build libraries and tools, not hosted services.</p>
+  </div>
+  
+  <div class="principle-card negative">
+    <h3>✗ Not Commercial</h3>
+    <p>No paid features, subscriptions, or licensing fees.</p>
+  </div>
+  
+  <div class="principle-card negative">
+    <h3>✗ Not Vaporware</h3>
+    <p>We ship working code for real problems we've encountered.</p>
+  </div>
+</div>
 
 ---
 
