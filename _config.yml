@@ -1,0 +1,5 @@
+title: Akaththi Labs
+description: Open-source research and development for embedded systems
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-seo-tag
