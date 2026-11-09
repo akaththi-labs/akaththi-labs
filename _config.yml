@@ -1,5 +1,5 @@
 title: Akaththi Labs
-description: Automation and technology unit of Akaththi Farms Private Limited
+description: Automation for living systems
 
 # The site is pre-built by `node _tools/build.mjs` and served as static files.
 # No theme and no plugins. Folders that start with an underscore are not published.

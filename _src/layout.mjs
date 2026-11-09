@@ -46,7 +46,19 @@ export function layout(page, r) {
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(page.description)}">
   <meta property="og:url" content="${url}">
+  <meta property="og:image" content="${CONFIG.url}/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Akaththi Labs. Automation for living systems.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${esc(title)}">
+  <meta name="twitter:description" content="${esc(page.description)}">
+  <meta name="twitter:image" content="${CONFIG.url}/assets/og-image.png">
+  <link rel="icon" href="${r}favicon.ico" sizes="48x48">
   <link rel="icon" href="${r}assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="${r}assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="${r}assets/apple-touch-icon.png">
+  <link rel="manifest" href="${r}site.webmanifest">
   <link rel="preload" href="${r}assets/fonts/martian-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="${r}assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${r}assets/css/site.css">
@@ -55,7 +67,7 @@ export function layout(page, r) {
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap">
-      <a class="mark" href="${r}">Akaththi Labs<span class="cursor"></span></a>
+      <a class="mark" href="${r}"><img src="${r}assets/mark.svg" alt="" width="30" height="30">Akaththi Labs</a>
       <nav class="nav" aria-label="Main">
         ${nav}
       </nav>

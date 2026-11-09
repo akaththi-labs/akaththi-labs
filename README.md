@@ -1,13 +1,15 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/brand/svg/lockup-white.svg">
+    <img src="assets/brand/svg/lockup-ink.svg" alt="Akaththi Labs" width="420">
+  </picture>
+</p>
+
 # Akaththi Labs
 
-Source of the Akaththi Labs website. Akaththi Labs is the automation and
-technology unit of Akaththi Farms Private Limited, Chennai, India.
-
-| Unit | Role |
-|---|---|
-| Akaththi Farms | Grows and sells mushrooms and microgreens |
-| Akaththi Labs | Builds and operates the technology: POD, Kaani Intelligence, managed farms |
-| Akaththi Research | Does the science: cultivation, strains, new cooling methods |
+Source of the Akaththi Labs website. Akaththi Labs builds automation and
+technology for living systems, starting with cultivation: the POD chamber,
+Kaani Intelligence and managed farms. Based in Chennai, India.
 
 ## What this repository is
 
@@ -36,8 +38,27 @@ generated files together with the source change.
 | `_tools/build.mjs` | The build script |
 | `assets/css/site.css` | The whole stylesheet |
 | `assets/fonts/` | Self-hosted fonts and their licences |
+| `assets/brand/` | Logo files for web, print and social. See its README |
+| `_tools/make-brand.mjs` | Regenerates every logo size (optional, needs Playwright) |
 
 Folders that start with an underscore are not published by GitHub Pages.
+
+## GitHub Pages
+
+Static files at the repository root, so no build runs on GitHub.
+
+1. Settings, Pages.
+2. Source: Deploy from a branch.
+3. Branch `main`, folder `/ (root)`. Save.
+
+The site then appears at `https://akaththi-labs.github.io/akaththi-labs/`.
+`.nojekyll` tells Pages to serve the files exactly as they are.
+
+## Logo
+
+The mark is a square frame with a square seed breaking the corner. Every
+size for web, apps and social is in `assets/brand/`, with a README that
+lists where each file goes.
 
 ## Settings to review
 
