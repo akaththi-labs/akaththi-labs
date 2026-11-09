@@ -521,6 +521,20 @@ code,
   border-top: 1px solid var(--rule);
 }
 
+.audiences.wide {
+  max-width: none;
+}
+
+.audiences.wide div {
+  grid-template-columns: 14rem minmax(0, 1fr);
+}
+
+.audiences dt .tag {
+  display: block;
+  margin: 0.25rem 0 0;
+  font-weight: 400;
+}
+
 .audiences div:last-child {
   border-bottom: 1px solid var(--rule);
 }

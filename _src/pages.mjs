@@ -31,35 +31,22 @@ const home = {
       <p class="prompt" aria-hidden="true"><span class="ps">$</span><span class="type">focus: cultivation</span><span class="cursor"></span></p>
     </section>
 
-    <section class="section section-rule" aria-labelledby="horizon-title">
+    <section class="section section-rule" aria-labelledby="problems-title">
       <div class="wrap">
-        <h2 id="horizon-title" class="h2 band-title">Where we are going</h2>
-        <div class="horizon">
-          <div>
-            <p class="when">Now</p>
-            <h3 class="h3">Agritech</h3>
-            <p>Controlled-environment cultivation. POD, Kaani and managed farms, proven on our own farm first.</p>
-            <p class="tag tag-building">building</p>
-          </div>
-          <div>
-            <p class="when">Next</p>
-            <h3 class="h3">More crops, more biology</h3>
-            <p>New crops, then other controlled-biology work where the same sensing and control apply.</p>
-            <p class="tag tag-design">exploring</p>
-          </div>
-          <div>
-            <p class="when">Later</p>
-            <h3 class="h3">Life science and health</h3>
-            <p>A direction, not a product. When something exists, this page will say so.</p>
-            <p class="tag tag-planned">direction</p>
-          </div>
-        </div>
+        <h2 id="problems-title" class="h2 band-title">What breaks on farms today</h2>
+        <dl class="audiences wide">
+          <div><dt>Mushrooms <span class="tag tag-building">we grow</span></dt><dd>Climate drifts, so batches abort or get contaminated. In hot places, growing all year needs costly cooling. Harvest and packing stay hand work.</dd></div>
+          <div><dt>Microgreens <span class="tag tag-building">we grow</span></dt><dd>Mould follows excess moisture and poor airflow. Shelf life is short, so supply has to match demand closely. Picking and packing is the biggest variable labour cost.</dd></div>
+          <div><dt>Saffron <span class="tag tag-design">under study</span></dt><dd>Every flower is picked by hand in a short autumn bloom. Cool, steady conditions are hard to hold outside Kashmir. Adulteration erodes trust in the product.</dd></div>
+          <div><dt>Vertical farming</dt><dd>Energy and labour dominate operating cost. Several well-funded farms built at scale before their unit economics worked, and failed.</dd></div>
+          <div><dt>Farm software</dt><dd>Every device and tool keeps its own data. Growers still piece the farm together from clipboards, chat messages and spreadsheets.</dd></div>
+        </dl>
       </div>
     </section>
 
     <section class="section section-rule" aria-labelledby="products-title">
       <div class="wrap">
-        <h2 id="products-title" class="h2 band-title">What we are building now</h2>
+        <h2 id="products-title" class="h2 band-title">Our answer, in three products</h2>
         <ul class="products">
           <li>
             <a href="${r}pod/">
@@ -90,21 +77,47 @@ const home = {
       </div>
     </section>
 
-    <section class="section section-rule" aria-labelledby="crops-title">
+    <section class="section section-rule" aria-labelledby="rules-title">
       <div class="wrap">
-        <h2 id="crops-title" class="h2 band-title">What it grows</h2>
+        <h2 id="rules-title" class="h2 band-title">How we avoid those mistakes</h2>
         <div class="crops">
           <div>
-            <h3 class="h3">Mushrooms</h3>
-            <p>Grown on our own farm today, on the same technology.</p>
+            <h3 class="h3">One farm first</h3>
+            <p>We prove the economics on our own farm before we build more. Scale comes after proof, not before.</p>
           </div>
           <div>
-            <h3 class="h3">Microgreens</h3>
-            <p>Grown on our own farm today.</p>
+            <h3 class="h3">Energy by design</h3>
+            <p>Energy is a design limit from day one, not a bill we look at later.</p>
           </div>
           <div>
-            <h3 class="h3">Saffron</h3>
-            <p>Under study for the POD and managed farms. We do not grow it yet.</p>
+            <h3 class="h3">Machines help people</h3>
+            <p>Automation removes guesswork from the operator's day. It does not pretend people are not needed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule" aria-labelledby="horizon-title">
+      <div class="wrap">
+        <h2 id="horizon-title" class="h2 band-title">Where we are going</h2>
+        <div class="horizon">
+          <div>
+            <p class="when">Now</p>
+            <h3 class="h3">Agritech</h3>
+            <p>Controlled-environment cultivation. POD, Kaani and managed farms, proven on our own farm first.</p>
+            <p class="tag tag-building">building</p>
+          </div>
+          <div>
+            <p class="when">Next</p>
+            <h3 class="h3">More crops, more biology</h3>
+            <p>New crops, then other controlled-biology work where the same sensing and control apply.</p>
+            <p class="tag tag-design">exploring</p>
+          </div>
+          <div>
+            <p class="when">Later</p>
+            <h3 class="h3">Life science and health</h3>
+            <p>A direction, not a product. When something exists, this page will say so.</p>
+            <p class="tag tag-planned">direction</p>
           </div>
         </div>
       </div>
@@ -158,11 +171,25 @@ const pod = {
 
     <section class="section">
       <div class="wrap split">
+        <h2 class="h2">The problem</h2>
+        <ul class="list flush">
+          <li>Temperature and humidity drift through the day. Pins abort and contamination follows.</li>
+          <li>In hot, humid places, cooling a whole room all year is costly, so many growers stop in summer.</li>
+          <li>Each crop and each growth stage wants different conditions, and few farms can switch between them.</li>
+          <li>Chambers that do work are often expensive, one-off builds that are hard to repeat.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-rule">
+      <div class="wrap split">
         <h2 class="h2">What it is built to do</h2>
         <ul class="list flush">
           <li>Hold a set climate through the day and night without someone adjusting it.</li>
           <li>Record every reading, so one cycle can be compared with the next.</li>
           <li>Show the chamber as it runs, on live dashboards.</li>
+          <li>Spend energy only on the small, sealed volume that needs it.</li>
+          <li>Switch settings by crop and growth stage: fruiting first, other stages and crops after.</li>
           <li>Come as a unit, so capacity grows by adding units.</li>
         </ul>
       </div>
@@ -202,6 +229,18 @@ const kaani = {
 
     <section class="section">
       <div class="wrap split">
+        <h2 class="h2">The problem</h2>
+        <ul class="list flush">
+          <li>Every device and tool keeps its own data. Nothing shows the whole farm in one place.</li>
+          <li>Records live on clipboards and in chats, so one batch cannot be compared with the next.</li>
+          <li>Know-how lives in a few people's heads and leaves when they do.</li>
+          <li>Nobody can trace a pack on the shelf back to the batch, the inputs and the climate it grew in.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-rule">
+      <div class="wrap split">
         <h2 class="h2">It starts at the chamber</h2>
         <div>
           <ol class="steps flush">
@@ -232,6 +271,7 @@ const kaani = {
         <div>
           <ul class="list flush">
             <li><span class="mono st-building">building</span> Chamber control and live dashboards.</li>
+            <li><span class="mono st-planned">planned</span> Procedures built in, so the know-how stays with the farm.</li>
             <li><span class="mono st-planned">planned</span> Crop cycles and batches, tracked from start to harvest.</li>
             <li><span class="mono st-planned">planned</span> Raw material and inventory records.</li>
             <li><span class="mono st-planned">planned</span> Harvest, packing and sales records, so produce can be traced to the market.</li>
@@ -265,6 +305,18 @@ const managed = {
 
     <section class="section">
       <div class="wrap split">
+        <h2 class="h2">The problem</h2>
+        <ul class="list flush">
+          <li>Most new farms fail on know-how, not on ambition: hygiene, spawn and seed handling, timing.</li>
+          <li>Good inputs are hard to source on time and at steady quality.</li>
+          <li>Building a controlled farm costs a lot before the first sale.</li>
+          <li>Hiring and training skilled operators is slow, and they are hard to keep.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-rule">
+      <div class="wrap split">
         <h2 class="h2">Who does what</h2>
         <div>
           <ol class="steps flush">
@@ -282,7 +334,7 @@ const managed = {
         <h2 class="h2">Before a pilot</h2>
         <div class="prose">
           <p>Food-safety licensing and who is responsible for what are agreed in writing before any pilot starts.</p>
-          <p>We take on a small number of pilots we can support properly.</p>
+          <p>We start with small pilots and prove each one before adding the next.</p>
         </div>
       </div>
     </section>
@@ -364,6 +416,22 @@ const about = {
           <li>Measure before we claim.</li>
           <li>Standard procedures, measured waste, steady improvement.</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section section-rule">
+      <div class="wrap split">
+        <h2 class="h2">Where our facts come from</h2>
+        <div>
+          <ul class="list flush">
+            <li><a href="https://www.agritecture.com/blog/is-vertical-farming-profitable">Agritecture, on vertical farm economics</a></li>
+            <li><a href="https://projects.sare.org/?p=747866">SARE project report FNE20-966, on microgreen costs</a></li>
+            <li><a href="https://sciforum.net/paper/view/28317">Mushroom Kothi, on seasonal mushroom growing in India</a></li>
+            <li><a href="https://doaj.org/article/310e5f1f3c324a468cf2a2becd47069a">Journal of Agriculture and Food Research, on saffron challenges</a></li>
+            <li><a href="https://verticalfarmdaily.com/article/9717440/fully-integrating-data-systems-within-a-vertical-farm">Vertical Farm Daily, on fragmented farm software</a></li>
+          </ul>
+          <p class="note">These describe the industry. They are not claims about our products.</p>
+        </div>
       </div>
     </section>
 
