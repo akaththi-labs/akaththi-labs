@@ -417,6 +417,15 @@ code,
   text-align: right;
 }
 
+/* ---------- Small-caps-free labels: names shown in lowercase ---------- */
+
+.mark,
+.nav a,
+.p-name,
+.page-title {
+  text-transform: lowercase;
+}
+
 /* ---------- Spec lines: key and value ---------- */
 
 .spec {
