@@ -20,61 +20,102 @@ const home = {
   slug: "",
   path: "/",
   file: "index.html",
-  title: "Automation for controlled-environment cultivation",
+  title: "Automation for living systems",
   description:
-    "Akaththi Labs builds the POD cultivation chamber, Kaani Intelligence control software and managed farms for repeatable mushroom cultivation.",
+    "Akaththi Labs builds machines, software and methods that make biology repeatable. We start with cultivation: the POD chamber, Kaani Intelligence and managed farms.",
   body: (r) => `
-    <section class="wrap head head-home">
-      <h1 class="display">Automation for controlled-environment cultivation</h1>
-      <p class="lead">We build the chambers, the control software and the operating know-how that make mushroom cultivation repeatable. Everything is developed on our own farm in Chennai first, then brought to yours.</p>
+    <section class="wrap hero">
+      <p class="eyebrow">Akaththi Labs &middot; Chennai, India</p>
+      <h1 class="display">Automation for living systems.</h1>
+      <p class="lead">We build the machines, software and methods that make biology repeatable. We start with cultivation. We do not intend to stop there.</p>
+      <p class="prompt" aria-hidden="true"><span class="ps">$</span><span class="type">focus: cultivation</span><span class="cursor"></span></p>
     </section>
 
-    <section class="wrap shell" aria-labelledby="listing-title">
-      <h2 id="listing-title" class="sr-only">What we are building</h2>
-      <p class="prompt" aria-hidden="true"><span class="ps">$</span><span class="type">labs ls --status</span></p>
-      <table class="listing">
-        <caption class="sr-only">Akaththi Labs products and their status</caption>
-        <thead>
-          <tr><th scope="col">status</th><th scope="col">name</th><th scope="col">what it is</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="st st-building">building</td>
-            <th scope="row"><a href="${r}pod/">pod/</a></th>
-            <td>A climate-controlled cultivation chamber for hot, humid places</td>
-          </tr>
-          <tr>
-            <td class="st st-building">building</td>
-            <th scope="row"><a href="${r}kaani/">kaani/</a></th>
-            <td>Sensing, control and monitoring software that runs the chamber</td>
-          </tr>
-          <tr>
-            <td class="st st-design">in design</td>
-            <th scope="row"><a href="${r}managed-farms/">managed-farms/</a></th>
-            <td>We set up and run a farm in your space. You keep the harvest</td>
-          </tr>
-          <tr>
-            <td class="st st-planned">planned</td>
-            <th scope="row"><a href="${r}open-source/">open-source/</a></th>
-            <td>Selected tools around the product, released under open licences</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="legend"><strong>building</strong> means we are making and testing it on our own farm. <strong>in design</strong> means scoped but not yet offered. <strong>planned</strong> means on the roadmap and not started.</p>
-      <p class="prompt-end" aria-hidden="true"><span class="ps">$</span><span class="cursor"></span></p>
+    <section class="section section-rule" aria-labelledby="horizon-title">
+      <div class="wrap">
+        <h2 id="horizon-title" class="h2 band-title">Where we are going</h2>
+        <div class="horizon">
+          <div>
+            <p class="when">Now</p>
+            <h3 class="h3">Agritech</h3>
+            <p>Controlled-environment cultivation. POD, Kaani and managed farms, proven on our own farm first.</p>
+            <p class="tag tag-building">building</p>
+          </div>
+          <div>
+            <p class="when">Next</p>
+            <h3 class="h3">More crops, more biology</h3>
+            <p>New crops, then other controlled-biology work where the same sensing and control apply.</p>
+            <p class="tag tag-design">exploring</p>
+          </div>
+          <div>
+            <p class="when">Later</p>
+            <h3 class="h3">Life science and health</h3>
+            <p>A direction, not a product. When something exists, this page will say so.</p>
+            <p class="tag tag-planned">direction</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-rule" aria-labelledby="products-title">
+      <div class="wrap">
+        <h2 id="products-title" class="h2 band-title">What we are building now</h2>
+        <ul class="products">
+          <li>
+            <a href="${r}pod/">
+              <span class="p-no">01</span>
+              <span class="p-name">POD 1.0</span>
+              <span class="p-what">A climate-controlled cultivation chamber for hot, humid places.</span>
+              <span class="tag tag-building">building</span>
+            </a>
+          </li>
+          <li>
+            <a href="${r}kaani/">
+              <span class="p-no">02</span>
+              <span class="p-name">Kaani Intelligence</span>
+              <span class="p-what">The sensing, control and monitoring software that runs the chamber.</span>
+              <span class="tag tag-building">building</span>
+            </a>
+          </li>
+          <li>
+            <a href="${r}managed-farms/">
+              <span class="p-no">03</span>
+              <span class="p-name">Managed farms</span>
+              <span class="p-what">We set up and run a farm in your space. You keep the harvest.</span>
+              <span class="tag tag-design">in design</span>
+            </a>
+          </li>
+        </ul>
+        <p class="legend"><strong>building</strong> means we are making and testing it on our own farm. <strong>in design</strong> means scoped but not yet offered.</p>
+      </div>
+    </section>
+
+    <section class="section section-rule" aria-labelledby="crops-title">
+      <div class="wrap">
+        <h2 id="crops-title" class="h2 band-title">What it grows</h2>
+        <div class="crops">
+          <div>
+            <h3 class="h3">Mushrooms</h3>
+            <p>Grown on our own farm today, on the same technology.</p>
+          </div>
+          <div>
+            <h3 class="h3">Microgreens</h3>
+            <p>Grown on our own farm today.</p>
+          </div>
+          <div>
+            <h3 class="h3">Saffron</h3>
+            <p>Under study for the POD. We do not grow it yet.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="section section-rule">
       <div class="wrap split">
         <h2 class="h2">Built on a working farm</h2>
         <div class="prose">
-          <p>Akaththi Farms grows and sells exotic mushrooms in Chennai. Every Labs product runs there before it goes anywhere else. If it does not hold up on our farm, we do not offer it.</p>
-          <p>Three units share the work, in this order:</p>
-          <ol class="steps">
-            <li><strong>Akaththi Research</strong> proves an idea works, with measurements.</li>
-            <li><strong>Akaththi Labs</strong> turns it into something others can build, buy and run.</li>
-            <li><strong>Akaththi Farms</strong> runs it every day and tells us what breaks.</li>
-          </ol>
+          <p>Everything we make runs on our own farm in Chennai before it goes anywhere else. If it does not hold up there, we do not offer it.</p>
+          <p>We say what exists today and what does not. Status labels on this site mean what they say.</p>
         </div>
       </div>
     </section>
@@ -98,16 +139,17 @@ const pod = {
   slug: "pod",
   path: "/pod/",
   file: "pod/index.html",
-  title: "POD",
+  title: "POD 1.0",
   description:
     "The POD is a modular, climate-controlled cultivation chamber from Akaththi Labs, being built and tested on our own farm in Chennai.",
   body: (r) => `
     <section class="wrap head">
-      <h1 class="page-title">POD</h1>
+      <h1 class="page-title">POD 1.0</h1>
       <p class="lead">A modular, climate-controlled chamber for growing crops that a hot, humid climate does not allow. It is built to hold temperature, humidity, fresh air and light inside a narrow window, so each cycle behaves like the last.</p>
       <dl class="spec">
         <dt>for</dt><dd>Our own farm today. Institutes, growers and research labs next.</dd>
         <dt>status</dt><dd><span class="mono st-building">building</span>. POD 1.0 is being tested on our farm in Chennai.</dd>
+        <dt>grows</dt><dd>Mushrooms and microgreens on our farm. Saffron is under study.</dd>
         <dt>runs on</dt><dd><a href="${r}kaani/">Kaani Intelligence</a></dd>
         <dt>offered as</dt><dd>Sale or lease. Terms are not set yet.</dd>
       </dl>
@@ -208,6 +250,7 @@ const managed = {
       <dl class="spec">
         <dt>for</dt><dd>Campuses, offices, kitchens and institutes with space and a use for fresh mushrooms. Mushroom brands that need steadier supply.</dd>
         <dt>status</dt><dd><span class="mono st-design">in design</span>. Pilots start after the <a href="${r}pod/">POD</a> has run reliably on our own farm.</dd>
+        <dt>crops</dt><dd>Mushrooms and microgreens first. Others once proven.</dd>
         <dt>you pay for</dt><dd>Technology and operations. Not for mushrooms.</dd>
       </dl>
     </section>
@@ -282,9 +325,8 @@ const openSource = {
 
     <section class="section section-rule">
       <div class="wrap split">
-        <h2 class="h2">Science</h2>
+        <h2 class="h2">Contributing</h2>
         <div class="prose">
-          <p>Cultivation science and its publications come from Akaththi Research, not from this repository.</p>
           <p>When a project repository exists, issues and pull requests are welcome there.</p>
         </div>
       </div>
@@ -297,26 +339,13 @@ const about = {
   file: "about/index.html",
   title: "About",
   description:
-    "Akaththi Labs is the automation and technology unit of Akaththi Farms Private Limited in Chennai, India.",
+    "Akaththi Labs builds automation and technology for living systems, starting with cultivation. Based in Chennai, India.",
   body: (r) => {
     const e = enquiry();
     return `
     <section class="wrap head">
       <h1 class="page-title">About Akaththi Labs</h1>
-      <p class="lead">Akaththi Labs is the automation and technology unit of Akaththi Farms Private Limited, based in Chennai, Tamil Nadu.</p>
-    </section>
-
-    <section class="section">
-      <div class="wrap split">
-        <h2 class="h2">Three units</h2>
-        <div>
-          <dl class="audiences">
-            <div><dt>Akaththi Farms</dt><dd>Grows and sells mushrooms and microgreens in Chennai.</dd></div>
-            <div><dt>Akaththi Labs</dt><dd>Builds and operates the technology: POD, Kaani Intelligence and managed farms.</dd></div>
-            <div><dt>Akaththi Research</dt><dd>Does the science: cultivation, strains and new cooling methods. Hands proven results to Labs.</dd></div>
-          </dl>
-        </div>
-      </div>
+      <p class="lead">Akaththi Labs builds automation and technology for living systems. We start with cultivation and are based in Chennai, Tamil Nadu.</p>
     </section>
 
     <section class="section section-rule">

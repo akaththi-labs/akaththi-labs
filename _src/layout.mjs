@@ -1,10 +1,9 @@
 import { CONFIG } from "./config.mjs";
 
 export const NAV = [
-  { slug: "pod", label: "pod" },
-  { slug: "kaani", label: "kaani" },
-  { slug: "managed-farms", label: "managed-farms" },
-  { slug: "open-source", label: "open-source" },
+  { slug: "pod", label: "POD" },
+  { slug: "kaani", label: "Kaani" },
+  { slug: "managed-farms", label: "managed farms" },
   { slug: "about", label: "about" },
 ];
 
@@ -56,7 +55,7 @@ export function layout(page, r) {
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap">
-      <a class="mark" href="${r}">akaththi<span>/</span>labs</a>
+      <a class="mark" href="${r}">Akaththi Labs<span class="cursor"></span></a>
       <nav class="nav" aria-label="Main">
         ${nav}
       </nav>
@@ -67,11 +66,12 @@ ${page.body(r)}
   </main>
   <footer class="site-footer">
     <div class="wrap">
-      <p>${esc(CONFIG.name)} is the automation and technology unit of ${esc(CONFIG.parent)}, Chennai, India. Akaththi Farms grows and sells the mushrooms. Akaththi Research does the science.</p>
+      <p>${esc(CONFIG.name)}, Chennai, India. Automation and technology for living systems.</p>
       <p>&copy; 2026 ${esc(CONFIG.parent)}. The source of this site is MIT licensed. Products and designs are not covered by that licence.</p>
       <div class="footer-links">
         <a href="${CONFIG.github}">GitHub</a>
         <a href="${CONFIG.repo}/blob/main/LICENSE">Site licence</a>
+        <a href="${r}open-source/">Open source</a>
         <a href="${r}about/#enquire">Enquiries</a>
       </div>
     </div>
