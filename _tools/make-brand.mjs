@@ -19,6 +19,12 @@ const markInner = (fill, id = "g", cls = false) =>
   `<defs><mask id="${id}"><rect width="200" height="200" fill="#fff"/><rect x="130" y="6" width="64" height="64" fill="#000"/></mask></defs>` +
   `<rect${cls ? ' class="r"' : ""} x="38" y="38" width="124" height="124" fill="none" stroke="${fill}" stroke-width="16" mask="url(#${id})"/>` +
   `<rect${cls ? ' class="s"' : ""} x="143" y="19" width="38" height="38" fill="${fill}"/>`;
+// Bolder cut for tab sizes (16 to 48 px), where the regular stroke is too thin.
+const boldInner = (fill, id = "g", cls = false) =>
+  `<defs><mask id="${id}"><rect width="200" height="200" fill="#fff"/><rect x="126" y="0" width="74" height="74" fill="#000"/></mask></defs>` +
+  `<rect${cls ? ' class="r"' : ""} x="38" y="38" width="124" height="124" fill="none" stroke="${fill}" stroke-width="24" mask="url(#${id})"/>` +
+  `<rect${cls ? ' class="s"' : ""} x="141" y="15" width="44" height="44" fill="${fill}"/>`;
+const boldSvg = (fill) => `<svg ${NS} viewBox="24 12 164 164">${boldInner(fill)}</svg>\n`;
 const NS = 'xmlns="http://www.w3.org/2000/svg"';
 const markSvg = (fill) => `<svg ${NS} viewBox="26 15 159 159">${markInner(fill)}</svg>\n`;
 // Lockup: mark, then the name as outlines (Martian Mono 600) so it needs no font.
@@ -29,8 +35,8 @@ const lockupSvg = (fill) => {
     `<path transform="translate(${tx} ${ty.toFixed(1)}) scale(${s})" fill="${fill}" d="${WORD}"/></svg>\n`;
 };
 const faviconSvg =
-  `<svg ${NS} viewBox="26 15 159 159"><style>@media (prefers-color-scheme:dark){.r{stroke:${C.paper}}.s{fill:${C.paper}}}</style>` +
-  markInner(C.ink, "g", true) + `</svg>\n`;
+  `<svg ${NS} viewBox="24 12 164 164"><style>@media (prefers-color-scheme:dark){.r{stroke:${C.paper}}.s{fill:${C.paper}}}</style>` +
+  boldInner(C.ink, "g", true) + `</svg>\n`;
 
 const write = (p, data) => { fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, data); };
 const names = { black: C.black, white: C.white, ink: C.ink };
@@ -55,8 +61,8 @@ async function shot(html, w, h, out, transparent = false) {
   await p.close();
 }
 // mark centred on a square, as a fraction of the canvas
-const markPng = (px, bg, fill, frac, out) => shot(
-  `<div style="width:${px}px;height:${px}px;display:grid;place-items:center;background:${bg}"><img src="${uri(markSvg(fill))}" width="${Math.round(px * frac)}" height="${Math.round(px * frac)}"></div>`,
+const markPng = (px, bg, fill, frac, out, svgFn = markSvg) => shot(
+  `<div style="width:${px}px;height:${px}px;display:grid;place-items:center;background:${bg}"><img src="${uri(svgFn(fill))}" width="${Math.round(px * frac)}" height="${Math.round(px * frac)}"></div>`,
   px, px, out, bg === "transparent");
 
 // 1. Transparent marks at every common size
@@ -75,7 +81,7 @@ await markPng(1024, C.ink, C.paper, 0.56, A("brand/png/icon-ink-1024.png"));
 await markPng(1024, C.white, C.black, 0.56, A("brand/png/icon-white-1024.png"));
 await markPng(1024, C.black, C.white, 0.56, A("brand/png/icon-black-1024.png"));
 // 4. Site and web-app icons
-for (const px of [16, 32]) await markPng(px, "transparent", C.ink, 1, A(`favicon-${px}.png`));
+for (const px of [16, 32, 48]) await markPng(px, "transparent", C.ink, 1, A(`favicon-${px}.png`), boldSvg);
 await markPng(180, C.paper, C.ink, 0.62, A("apple-touch-icon.png"));
 await markPng(192, C.paper, C.ink, 0.62, A("icon-192.png"));
 await markPng(512, C.paper, C.ink, 0.62, A("icon-512.png"));
@@ -104,8 +110,8 @@ await browser.close();
 // 6. favicon.ico (16, 32, 48) from the black-on-transparent PNGs
 execFileSync("python3", ["-c", `
 from PIL import Image
-im=Image.open(r"${A("brand/png/mark-black-48.png")}").convert("RGBA")
-im.save(r"${A("favicon.ico")}", sizes=[(16,16),(32,32),(48,48)])`]);
+im=Image.open(r"${A("favicon-48.png")}").convert("RGBA")
+im.save(r"${path.join(root, "favicon.ico")}", sizes=[(16,16),(32,32),(48,48)])`]);
 write(A("../site.webmanifest"), JSON.stringify({
   name: "Akaththi Labs", short_name: "Akaththi Labs", description: "Automation for living systems.",
   start_url: "./", display: "standalone", background_color: C.paper, theme_color: C.paper,
