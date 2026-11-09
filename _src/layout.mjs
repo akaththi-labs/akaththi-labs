@@ -1,0 +1,82 @@
+import { CONFIG } from "./config.mjs";
+
+export const NAV = [
+  { slug: "pod", label: "pod" },
+  { slug: "kaani", label: "kaani" },
+  { slug: "managed-farms", label: "managed-farms" },
+  { slug: "open-source", label: "open-source" },
+  { slug: "about", label: "about" },
+];
+
+const esc = (s) =>
+  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+// Enquiry link: email when configured, otherwise a public GitHub issue.
+export function enquiry() {
+  if (CONFIG.contactEmail) {
+    return {
+      href: `mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent("Akaththi Labs enquiry")}`,
+      note: "",
+    };
+  }
+  return {
+    href: `${CONFIG.repo}/issues/new?title=${encodeURIComponent("Enquiry")}`,
+    note: "This opens a GitHub issue, so your message will be public.",
+  };
+}
+
+export function layout(page, r) {
+  const url = CONFIG.url + page.path;
+  const title = page.slug === "" ? `${CONFIG.name}: ${page.title}` : `${page.title} | ${CONFIG.name}`;
+  const nav = NAV.map(
+    (n) =>
+      `<a href="${r}${n.slug}/"${page.slug === n.slug ? ' aria-current="page"' : ""}>${n.label}</a>`
+  ).join("\n        ");
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${esc(title)}</title>
+  <meta name="description" content="${esc(page.description)}">
+  <meta name="theme-color" content="#f1f4f0">
+  <link rel="canonical" href="${url}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="${esc(CONFIG.name)}">
+  <meta property="og:title" content="${esc(title)}">
+  <meta property="og:description" content="${esc(page.description)}">
+  <meta property="og:url" content="${url}">
+  <link rel="icon" href="${r}assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="${r}assets/fonts/martian-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="${r}assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="${r}assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="mark" href="${r}">akaththi<span>/</span>labs</a>
+      <nav class="nav" aria-label="Main">
+        ${nav}
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+${page.body(r)}
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>${esc(CONFIG.name)} is the automation and technology unit of ${esc(CONFIG.parent)}, Chennai, India. Akaththi Farms grows and sells the mushrooms. Akaththi Research does the science.</p>
+      <p>&copy; 2026 ${esc(CONFIG.parent)}. The source of this site is MIT licensed. Products and designs are not covered by that licence.</p>
+      <div class="footer-links">
+        <a href="${CONFIG.github}">GitHub</a>
+        <a href="${CONFIG.repo}/blob/main/LICENSE">Site licence</a>
+        <a href="${r}about/#enquire">Enquiries</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+`;
+}
