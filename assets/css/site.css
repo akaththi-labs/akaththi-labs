@@ -191,7 +191,7 @@ code,
 .site-header .wrap {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 0.5rem 2rem;
   padding-block: 1rem;
@@ -204,6 +204,17 @@ code,
   letter-spacing: -0.02em;
   color: var(--ink);
   text-decoration: none;
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mark img {
+  display: block;
+  image-rendering: pixelated;
 }
 
 .mark .cursor {
