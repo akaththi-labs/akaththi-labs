@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/brand/svg/lockup-white.svg">
+    <img src="assets/brand/svg/lockup-ink.svg" alt="Akaththi Labs" width="420">
+  </picture>
+</p>
+
 # Akaththi Labs
 
 Source of the Akaththi Labs website. Akaththi Labs builds automation and
