@@ -17,12 +17,17 @@ function write(rel, content) {
   console.log("wrote", rel);
 }
 
+// Point folder links at their index.html, so the site also works when the files
+// are opened directly or served by a host that does not map folders to pages.
+const explicit = (html) =>
+  html.replace(/href="((?:\.{1,2}\/)+(?:[^"#.]*\/)?|\/[^"#.]*\/)(#[^"]*)?"/g, (m, p, h) => `href="${p}index.html${h || ""}"`);
+
 for (const page of PAGES) {
   // Relative path back to the site root. The 404 page can be served from any
   // depth, so it uses the absolute base path instead.
   const depth = page.file.split("/").length - 1;
   const r = page.root === "base" ? `${CONFIG.base}/` : depth === 0 ? "./" : "../".repeat(depth);
-  write(page.file, layout(page, r));
+  write(page.file, explicit(layout(page, r)));
 }
 
 const urls = PAGES.filter((p) => p.slug !== "404")
