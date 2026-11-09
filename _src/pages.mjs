@@ -22,7 +22,7 @@ const home = {
   file: "index.html",
   title: "Automation for living systems",
   description:
-    "Akaththi Labs builds machines, software and methods that make biology repeatable. We start with cultivation: the POD chamber, Kaani Intelligence and managed farms.",
+    "Akaththi Labs builds machines, software and methods that make biology repeatable. We start with advanced farming: the POD chamber, Kaani Intelligence and managed farms.",
   body: (r) => `
     <section class="wrap hero">
       <p class="eyebrow">Akaththi Labs &middot; Chennai, India</p>
@@ -65,7 +65,7 @@ const home = {
             <a href="${r}pod/">
               <span class="p-no">01</span>
               <span class="p-name">POD 1.0</span>
-              <span class="p-what">A climate-controlled cultivation chamber for hot, humid places.</span>
+              <span class="p-what">A climate-controlled cultivation chamber, developed with research partners.</span>
               <span class="tag tag-building">building</span>
             </a>
           </li>
@@ -73,7 +73,7 @@ const home = {
             <a href="${r}kaani/">
               <span class="p-no">02</span>
               <span class="p-name">Kaani Intelligence</span>
-              <span class="p-what">The sensing, control and monitoring software that runs the chamber.</span>
+              <span class="p-what">An intelligent farm operating system, from farm to market.</span>
               <span class="tag tag-building">building</span>
             </a>
           </li>
@@ -81,7 +81,7 @@ const home = {
             <a href="${r}managed-farms/">
               <span class="p-no">03</span>
               <span class="p-name">Managed farms</span>
-              <span class="p-what">We set up and run a farm in your space. You keep the harvest.</span>
+              <span class="p-what">Our procedures, our supplies and our operators on your farm. You sell the produce.</span>
               <span class="tag tag-design">in design</span>
             </a>
           </li>
@@ -104,7 +104,7 @@ const home = {
           </div>
           <div>
             <h3 class="h3">Saffron</h3>
-            <p>Under study for the POD. We do not grow it yet.</p>
+            <p>Under study for the POD and managed farms. We do not grow it yet.</p>
           </div>
         </div>
       </div>
@@ -125,8 +125,8 @@ const home = {
         <h2 class="h2">Who we talk to</h2>
         <div>
           <dl class="audiences">
-            <div><dt>Institutes and labs</dt><dd>A POD for teaching or research. Tell us what you want to grow and measure.</dd></div>
-            <div><dt>Brands and growers</dt><dd>Steadier supply, through technology you run or a farm we run for you.</dd></div>
+            <div><dt>Research firms and institutions</dt><dd>Work with us on POD 1.0, or get a POD for teaching or research. Tell us what you want to grow and measure.</dd></div>
+            <div><dt>Brands and growers</dt><dd>Steadier supply, from a farm we run for you or technology you run yourself.</dd></div>
             <div><dt>Organisations with space</dt><dd>A working farm on your campus, in your offices or next to your kitchen.</dd></div>
           </dl>
           <a class="button" href="${r}about/#enquire">Send an enquiry</a>
@@ -141,13 +141,14 @@ const pod = {
   file: "pod/index.html",
   title: "POD 1.0",
   description:
-    "The POD is a modular, climate-controlled cultivation chamber from Akaththi Labs, being built and tested on our own farm in Chennai.",
+    "POD 1.0 is a modular, climate-controlled cultivation chamber from Akaththi Labs, developed with research partners and tested on our own farm in Chennai.",
   body: (r) => `
     <section class="wrap head">
       <h1 class="page-title">POD 1.0</h1>
       <p class="lead">A modular, climate-controlled chamber for growing crops that a hot, humid climate does not allow. It is built to hold temperature, humidity, fresh air and light inside a narrow window, so each cycle behaves like the last.</p>
       <dl class="spec">
-        <dt>for</dt><dd>Our own farm today. Institutes, growers and research labs next.</dd>
+        <dt>for</dt><dd>Our own farm today. Research firms, institutions and growers next.</dd>
+        <dt>with</dt><dd>Research firms and institutions, who work with us on POD 1.0.</dd>
         <dt>status</dt><dd><span class="mono st-building">building</span>. POD 1.0 is being tested on our farm in Chennai.</dd>
         <dt>grows</dt><dd>Mushrooms and microgreens on our farm. Saffron is under study.</dd>
         <dt>runs on</dt><dd><a href="${r}kaani/">Kaani Intelligence</a></dd>
@@ -171,13 +172,14 @@ const pod = {
       <div class="wrap split">
         <h2 class="h2">Where it stands</h2>
         <div class="prose">
-          <p>POD 1.0 is our own production unit. We are building and testing it on our farm. Smaller and larger versions follow once the first one is proven.</p>
+          <p>We are developing POD 1.0 together with research firms and institutions, and testing it on our own farm. If you do research on cultivation, we want to hear from you.</p>
+          <p>POD 1.0 is our own production unit. Smaller and larger versions follow once the first one is proven.</p>
           <p>We will publish measured results after a full grow cycle has run without anyone stepping in. We will not publish them before.</p>
           <p>Design details are protected and are not published.</p>
         </div>
       </div>
     </section>
-${closing("Interested in a POD for teaching, research or production? Tell us what you want to grow and measure.")}`,
+${closing("A research firm or institution interested in POD 1.0, or a grower who wants a POD? Tell us what you want to grow and measure.")}`,
 };
 
 const kaani = {
@@ -186,21 +188,21 @@ const kaani = {
   file: "kaani/index.html",
   title: "Kaani Intelligence",
   description:
-    "Kaani Intelligence is the sensing, control and monitoring software from Akaththi Labs that runs the POD cultivation chamber.",
+    "Kaani Intelligence is the intelligent farm operating system from Akaththi Labs, built to run a farm from the chamber to the market.",
   body: (r) => `
     <section class="wrap head">
       <h1 class="page-title">Kaani Intelligence</h1>
-      <p class="lead">The software that senses, decides and acts inside the chamber. Kaani reads the climate, adjusts the equipment and keeps a record of everything it does.</p>
+      <p class="lead">An intelligent farm operating system, built to run a farm end to end, from the chamber to the market.</p>
       <dl class="spec">
-        <dt>for</dt><dd>Running a <a href="${r}pod/">POD</a>.</dd>
-        <dt>status</dt><dd><span class="mono st-building">building</span>. A first automation system and live dashboards are in build for POD 1.0.</dd>
+        <dt>for</dt><dd>Running a <a href="${r}pod/">POD</a> today, and a whole farm over time.</dd>
+        <dt>status</dt><dd><span class="mono st-building">building</span>. The chamber control layer and live dashboards come first. The rest is planned.</dd>
         <dt>part of</dt><dd>Akaththi Labs. Kaani is a product line, not a separate company.</dd>
       </dl>
     </section>
 
     <section class="section">
       <div class="wrap split">
-        <h2 class="h2">The control loop</h2>
+        <h2 class="h2">It starts at the chamber</h2>
         <div>
           <ol class="steps flush">
             <li><strong>Sense.</strong> Sensor nodes read temperature, humidity, CO2 and light.</li>
@@ -226,10 +228,16 @@ const kaani = {
 
     <section class="section section-rule">
       <div class="wrap split">
-        <h2 class="h2">Where it stands</h2>
-        <div class="prose">
-          <p><span class="mono st-planned">planned</span> Models for climate tuning, yield forecasts and contamination detection. They need many logged cycles first, so they come after the basics are proven.</p>
-          <p>Until a grow cycle has run end to end on our farm, we are not publishing performance numbers.</p>
+        <h2 class="h2">Farm to market</h2>
+        <div>
+          <ul class="list flush">
+            <li><span class="mono st-building">building</span> Chamber control and live dashboards.</li>
+            <li><span class="mono st-planned">planned</span> Crop cycles and batches, tracked from start to harvest.</li>
+            <li><span class="mono st-planned">planned</span> Raw material and inventory records.</li>
+            <li><span class="mono st-planned">planned</span> Harvest, packing and sales records, so produce can be traced to the market.</li>
+            <li><span class="mono st-planned">planned</span> Models for climate tuning, yield forecasts and contamination detection. They need many logged cycles first.</li>
+          </ul>
+          <p class="note">Until a grow cycle has run end to end on our farm, we are not publishing performance numbers.</p>
         </div>
       </div>
     </section>
@@ -242,27 +250,28 @@ const managed = {
   file: "managed-farms/index.html",
   title: "Managed farms",
   description:
-    "Akaththi Labs sets up and runs a controlled-environment farm in your space. You keep the harvest. Pilot enquiries are open.",
+    "Akaththi Labs brings its procedures, supplies and operators to a farm in your space. We run it, you sell the produce. Pilot enquiries are open.",
   body: (r) => `
     <section class="wrap head">
       <h1 class="page-title">Managed farms</h1>
-      <p class="lead">We set up a controlled-environment farm in your space and run it. You keep the harvest.</p>
+      <p class="lead">Advanced farming without building the know-how yourself. We bring our procedures, supply the raw materials and run the farm. You sell the produce.</p>
       <dl class="spec">
-        <dt>for</dt><dd>Campuses, offices, kitchens and institutes with space and a use for fresh mushrooms. Mushroom brands that need steadier supply.</dd>
+        <dt>for</dt><dd>Campuses, offices, kitchens, institutes and brands with space and a market for fresh produce.</dd>
         <dt>status</dt><dd><span class="mono st-design">in design</span>. Pilots start after the <a href="${r}pod/">POD</a> has run reliably on our own farm.</dd>
-        <dt>crops</dt><dd>Mushrooms and microgreens first. Others once proven.</dd>
-        <dt>you pay for</dt><dd>Technology and operations. Not for mushrooms.</dd>
+        <dt>crops</dt><dd>Mushrooms and microgreens first. Saffron once the POD has proven it.</dd>
+        <dt>you pay for</dt><dd>Technology, supplies and operations.</dd>
       </dl>
     </section>
 
     <section class="section">
       <div class="wrap split">
-        <h2 class="h2">Three ways to take part</h2>
+        <h2 class="h2">Who does what</h2>
         <div>
           <ol class="steps flush">
-            <li><strong>Technology lease.</strong> A POD, Kaani and our growing procedures for a monthly fee. Your team grows.</li>
-            <li><strong>Managed farm.</strong> The same, and our operators run the farm to our procedures. You pay an operations fee.</li>
-            <li><strong>Managed, with offtake.</strong> The same, and Akaththi Farms can buy or help sell your harvest, under a separate agreement.</li>
+            <li><strong>Our procedures.</strong> The standard operating procedures we run our own farm by, and the advanced farming technology behind them.</li>
+            <li><strong>Our supplies.</strong> We supply the raw materials and keep the inventory stocked.</li>
+            <li><strong>Our operators.</strong> We operate the farm day to day.</li>
+            <li><strong>Your market.</strong> You own the harvest and sell it, in your space or your channels.</li>
           </ol>
         </div>
       </div>
@@ -270,15 +279,14 @@ const managed = {
 
     <section class="section section-rule">
       <div class="wrap split">
-        <h2 class="h2">Who keeps what</h2>
+        <h2 class="h2">Before a pilot</h2>
         <div class="prose">
-          <p>The harvest is yours. You decide whether to use it, sell it or sell it to Akaththi Farms. That choice never sits inside the technology contract.</p>
           <p>Food-safety licensing and who is responsible for what are agreed in writing before any pilot starts.</p>
           <p>We take on a small number of pilots we can support properly.</p>
         </div>
       </div>
     </section>
-${closing("Have space and a use for fresh mushrooms, or a brand that needs steadier supply? Tell us where and how much.")}`,
+${closing("Have space and a market for fresh produce? Tell us where, what you would grow and how much.")}`,
 };
 
 const openSource = {
