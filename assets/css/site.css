@@ -214,7 +214,6 @@ code,
 
 .mark img {
   display: block;
-  image-rendering: pixelated;
 }
 
 .mark .cursor {

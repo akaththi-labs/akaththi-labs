@@ -57,7 +57,7 @@ export function layout(page, r) {
   <a class="skip" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap">
-      <a class="mark" href="${r}"><img src="${r}assets/mark.svg" alt="" width="30" height="30">Akaththi Labs<span class="cursor"></span></a>
+      <a class="mark" href="${r}"><img src="${r}assets/mark.svg" alt="" width="30" height="30">Akaththi Labs</a>
       <nav class="nav" aria-label="Main">
         ${nav}
       </nav>
