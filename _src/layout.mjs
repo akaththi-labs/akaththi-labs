@@ -54,9 +54,10 @@ export function layout(page, r) {
   <meta name="twitter:title" content="${esc(title)}">
   <meta name="twitter:description" content="${esc(page.description)}">
   <meta name="twitter:image" content="${CONFIG.url}/assets/og-image.png">
-  <link rel="icon" href="${r}favicon.ico" sizes="48x48">
-  <link rel="icon" href="${r}assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="${r}favicon.ico" sizes="any">
+  <link rel="icon" href="${r}assets/favicon.svg" type="image/svg+xml" sizes="any">
   <link rel="icon" href="${r}assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="${r}assets/favicon-16.png" sizes="16x16" type="image/png">
   <link rel="apple-touch-icon" href="${r}assets/apple-touch-icon.png">
   <link rel="manifest" href="${r}site.webmanifest">
   <link rel="preload" href="${r}assets/fonts/martian-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>

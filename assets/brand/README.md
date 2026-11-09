@@ -39,7 +39,7 @@ White versions are for dark backgrounds.
 
 ## Used by the website
 
-In `assets/`: `favicon.svg` (light and dark), `favicon-16.png`, `favicon-32.png`, `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `og-image.png`. At the repo root: `favicon.ico` (16, 32, 48) and `site.webmanifest`.
+In `assets/`: `favicon.svg` (light and dark), `favicon-16.png`, `favicon-32.png`, `favicon-48.png` (bolder cut for tab sizes), `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `og-image.png`. At the repo root: `favicon.ico` (16, 32, 48) and `site.webmanifest`.
 
 ## Rules
 
