@@ -65,7 +65,8 @@ lists where each file goes.
 
 - **Enquiry address.** The enquiry form opens a public GitHub issue. To use email instead, change the submit handler in `assets/site/ui.js` once there is a monitored address.
 
-- **Base path.** `base` and `url` assume the project address
+- **Base path.** `BASE` in `_site/build.py` and the `/akaththi-labs/` prefix
+  used for the 404 page assume the project address
   `akaththi-labs.github.io/akaththi-labs`. Change both if the site moves to
   a custom domain.
 
