@@ -59,7 +59,7 @@ def foot(scripts):
     return f'''</main>
 <footer>
   <div class="wrap"><span>© 2026 Akaththi Labs, a unit of Akaththi Farms Private Limited.</span><span>Powered by Kaani Intelligence · Patent pending · Designed in Chennai</span></div>
-  <div class="wrap fam"><span>Akaththi: <a href="https://akaththifarms.com/">Farms</a> · Labs · <a href="https://github.com/akaththi-research">Research</a></span></div>
+  <div class="wrap fam"><span>Akaththi: <a href="https://akaththifarms.com/">Farms</a> · Labs · <a href="https://github.com/akaththi-research">Research</a> · <a href="open-source.html">Open source</a></span></div>
 </footer>
 {scripts}
 </body>
