@@ -4,7 +4,7 @@ G,V,B,A,K='#2d45e3','#e0457b','#3a78c2','#d68a0c','#0b1310'
 def fs(eyebrow,h,p,visual,rev=False,extra=''):
     return f'<section class="fs{" rev" if rev else ""}"><div class="fx"><span class="eyebrow">{eyebrow}</span><h2>{h}</h2><p>{p}</p>{extra}</div><div class="fv">{visual}</div></section>\n'
 # ---------------- HUMIDIFIER ----------------
-steps=[('Opens wide.','The front swings fully open for easy cleaning.'),('Wipes clean.','A smooth body, with nothing to catch.'),('Seen across the room.','A status light bar and display tell you at a glance.'),('Easy to move.','Recessed grips on both sides.'),('Three connections, all at the back.','Power, water in and drain, with a ventilated rear panel.')]
+steps=[('Opens from the top.','The lid lifts and the tank is open to the light. Wipe it clean by hand.'),('Wipes clean.','A smooth moulded body, with nothing to catch.'),('The filter pulls out.','A washable foam filter slides out of the side. No tools.'),('Seen across the room.','A status light bar and display tell you at a glance. One switch turns it on and off.'),('Air out where you need it.','A round outlet on top takes your own duct, high, low or long.'),('Easy to move.','Wheels, and a strong handle on each end.'),('Three connections, all at the back.','Power, water in and drain.')]
 st=''.join(f'    <article class="step" data-s="{i+1}"><div class="sc"><span class="k">0{i+1}</span><h2>{h}</h2><p>{p}</p></div></article>\n' for i,(h,p) in enumerate(steps))
 def dots(path,n,dur,col,r=3.6):
     return ''.join(f'<circle r="{r}" fill="{col}"><animateMotion dur="{dur}s" begin="{-i*dur/n:.2f}s" repeatCount="indefinite" path="{path}"/></circle>' for i in range(n))
@@ -35,7 +35,7 @@ water=f'''<svg class="dg" id="wt" viewBox="0 0 760 370" role="img" aria-label="W
 hum=head('Humidifier 1.0 · Akaththi Labs','Humidifier 1.0, a high-efficiency humidification unit.',False)+nav('hum')+f'''<section class="pagehero" style="padding-bottom:10px"><div class="wrap"><span class="eyebrow">Humidifier 1.0</span><h1>You have the farm. <em>Now, the humidity.</em></h1><p>Humidity held exactly as your crops expect, built to be cleaned, moved and trusted.</p></div></section>
 <section class="tour stage" id="humTour" data-s="0">
   <div class="stick" style="height:calc(100svh - 0px)">
-    <div class="viewer full" id="vwH2"><canvas id="cvH2" role="img" aria-label="Interactive 3D model of Humidifier 1.0. Scroll to open its door and turn it."></canvas></div>
+    <div class="viewer full" id="vwH2"><canvas id="cvH2" role="img" aria-label="Interactive 3D model of Humidifier 1.0. Scroll to open its lid and turn it."></canvas></div>
     <nav class="dots" aria-label="Highlights"></nav>
   </div>
   <div class="steps">

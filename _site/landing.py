@@ -60,7 +60,7 @@ body=head('Akaththi Labs · Wherever you are. Grow on.','POD 1.0, a complete mus
 {steps}  </div>
 </section>
 
-'''+stage('stageHum','vwHS','Humidifier 1.0',[('Already have a farm?','Add our high-efficiency humidifier. It holds humidity exactly as your crops expect.'),('Opens wide.','The front swings fully open, and a smooth body wipes clean.'),('Seen across the room.','A status light bar and display tell you at a glance.'),('Three connections.','Power, water in and drain, all at the back.')],'Explore Humidifier 1.0','humidifier.html',viewer=humv)\
+'''+stage('stageHum','vwHS','Humidifier 1.0',[('Already have a farm?','Add our high-efficiency humidifier. It holds humidity exactly as your crops expect.'),('Opens from the top.','The lid lifts, and a smooth body wipes clean.'),('Seen across the room.','A status light bar and display tell you at a glance.'),('Three connections.','Power, water in and drain, all at the back.')],'Explore Humidifier 1.0','humidifier.html',viewer=humv)\
 +'''<section class="close">
   <div class="wrap"><span class="eyebrow">For growers</span><h2>Growing something else? <em>Let’s make the POD ready for it.</em></h2><p class="more">Want to automate something else in agriculture? Talk to us. We can help.</p></div>
 </section>

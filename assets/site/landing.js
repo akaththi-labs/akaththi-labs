@@ -171,12 +171,12 @@ function stage(secId,cid,init,KFs,apply){
   return {tick(dt,now){if(!st||!st.s.visible)return;const k=UI.kf(KFs,UI.pos(sec,false)),o=st.s.orbit;o.touched=true;o.tth=k.th;o.tph=k.ph;o.tr=k.r;o.ttarget.set(k.t[0],k.t[1],k.t[2]);apply(k,st,dt,now);o.update(dt,st.s.cam);st.s.renderer.render(st.s.scene,st.s.cam)}};
 }
 const HS=stage('stageHum','cvHS',cv=>{
-  const s=makeStage(cv,{th:.7,ph:1.28,r:9.5,fov:30,target:V(0,1.3,0)});s.orbit.sm=.0001;
+  const s=makeStage(cv,{th:.7,ph:1.25,r:9,fov:30,target:V(0,1,0)});s.orbit.sm=.0001;
   lights(s.scene,{sb:6,sky:0xffffff,gnd:0xb9beb4,hemi:.95,key:1,fill:.5,fillc:0xffffff});
   const h=buildHum();s.scene.add(h);const g=new T.Mesh(new T.PlaneGeometry(40,40),new T.ShadowMaterial({opacity:.15}));g.rotation.x=-Math.PI/2;g.receiveShadow=true;s.scene.add(g);
   return {s,api:h};
-},[{th:.3,ph:1.3,r:8.6,t:[0,1.3,0],o:1},{th:.95,ph:1.2,r:8,t:[0,1.3,0],o:0},{th:.12,ph:1.3,r:6.2,t:[0,1.9,0],o:0},{th:Math.PI+.4,ph:1.28,r:8,t:[0,1.3,0],o:0}],
-(k,st)=>{st.api.userData.hinge.rotation.y=-1.95*k.o});
+},[{th:.7,ph:1.25,r:9,t:[0,1,0],o:0},{th:.35,ph:.9,r:6.4,t:[-1.3,1.4,0],o:1},{th:.15,ph:1.3,r:5.8,t:[.8,1.4,0],o:0},{th:Math.PI+.35,ph:1.25,r:6.8,t:[0,1,0],o:0}],
+(k,st)=>{st.api.userData.set({lid:k.o})});
 
 /* ================= loop ================= */
 let last=performance.now();const pm=new T.Object3D();
