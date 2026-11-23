@@ -54,46 +54,77 @@ function cyl(r,h,mat,x,y,z,seg){const m=new T.Mesh(new T.CylinderGeometry(r,r,h,
 /* ---------- humidifier model ---------- */
 function rr(w,d,r){const s=new T.Shape(),x=-w/2,y=-d/2;s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);s.lineTo(x+w,y+d-r);s.quadraticCurveTo(x+w,y+d,x+w-r,y+d);s.lineTo(x+r,y+d);s.quadraticCurveTo(x,y+d,x,y+d-r);s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);return s}
 function slab(w,d,r,h,mat,bev){bev=bev||0;const g=new T.ExtrudeGeometry(rr(w-2*bev,d-2*bev,r),{depth:h-2*bev,bevelEnabled:bev>0,bevelSize:bev,bevelThickness:bev,bevelSegments:3,curveSegments:10});g.rotateX(-Math.PI/2);const m=new T.Mesh(g,mat);m.position.y=bev;m.castShadow=m.receiveShadow=true;const gr=new T.Group();gr.add(m);return gr}
-function buildHum(){
+function slabH(w,d,r,h,mat,bev,hole){const sh=rr(w-2*bev,d-2*bev,r);
+  if(hole){const p=new T.Path();p.moveTo(hole[0],-hole[2]);p.lineTo(hole[1],-hole[2]);p.lineTo(hole[1],hole[2]);p.lineTo(hole[0],hole[2]);p.lineTo(hole[0],-hole[2]);sh.holes.push(p)}
+  const g=new T.ExtrudeGeometry(sh,{depth:h-2*bev,bevelEnabled:bev>0,bevelSize:bev,bevelThickness:bev,bevelSegments:3,curveSegments:10});g.rotateX(-Math.PI/2);
+  const m=new T.Mesh(g,mat);m.position.y=bev;m.castShadow=m.receiveShadow=true;const gr=new T.Group();gr.add(m);return gr}
+/* Humidifier 1.0: public exterior model, 1 unit = 1 ft. opts.pod: the POD-integrated unit, status lights only (the POD controller owns the switch and display). */
+function buildHum(opts){
+  opts=opts||{};const pod=!!opts.pod;
   const g=new T.Group();
-  const plastic=new T.MeshPhysicalMaterial({color:0xf3f5f1,roughness:.42,clearcoat:.45,clearcoatRoughness:.3});
-  const lid=new T.MeshPhysicalMaterial({color:0xe6eae4,roughness:.4,clearcoat:.4,clearcoatRoughness:.3});
-  const dark=M(0x0c110f,{roughness:.8}), grey=M(0x8e9895,{roughness:.5}), steel=M(0xbfc7c7,{roughness:.28,metalness:.9});
-  const plinth=slab(2.76,1.56,.22,.25,dark);g.add(plinth);
-  const body=slab(3,1.8,.28,2.1,plastic,.05);body.position.y=.25;g.add(body);
-  const seam=slab(2.86,1.66,.24,.03,dark);seam.position.y=2.35;g.add(seam);
-  const top=slab(2.9,1.7,.24,.16,lid,.03);top.position.y=2.38;g.add(top);
-  [-.8,.8].forEach(x=>{g.add(cyl(.3,.24,grey,x,2.66,-.1));g.add(cyl(.23,.02,dark,x,2.79,-.1));});
-  // grille
-  for(let i=0;i<14;i++)g.add(bx(.05,.22,.02,dark,-.85+i*.131,.5,.905));
-  // display + status bar
-  g.add(bx(.72,.2,.02,M(0x0e1412,{roughness:.2,metalness:.3}),-.85,2.17,.905));
-  g.add(bx(.04,.04,.025,new T.MeshBasicMaterial({color:0xd6f2cb}),-.62,2.17,.92));
-  g.add(bx(1,.045,.02,new T.MeshBasicMaterial({color:0xd6f2cb}),.8,2.17,.905));
-  // opening + generic service bay
-  g.add(bx(2.5,1.25,.02,dark,0,1.375,.905));
-  g.add(bx(2.3,.03,.02,M(0x59635f),0,.98,.918));g.add(bx(2.3,.03,.02,M(0x59635f),0,1.78,.918));
-  g.add(bx(1.2,.5,.05,steel,.35,1.38,.93));
-  const cap=cyl(.22,.05,steel,-.75,1.38,.935);cap.rotation.x=Math.PI/2;g.add(cap);
-  // door
-  const hinge=new T.Group();hinge.position.set(-1.25,1.375,.915);g.add(hinge);
-  const dg=new T.ExtrudeGeometry(rr(2.5,1.25,.1),{depth:.05,bevelEnabled:false,curveSegments:8});
-  const door=new T.Mesh(dg,new T.MeshPhysicalMaterial({color:0xf7f9f5,roughness:.4,clearcoat:.4}));door.position.set(1.25,0,0);door.castShadow=true;hinge.add(door);
-  const hd=bx(.07,.55,.05,dark,2.2,-.05,.075);hinge.add(hd);
-  hinge.add(bx(2.2,.03,.02,new T.MeshBasicMaterial({color:0xc04cc6}),1.25,-.5,.06));
-  // grips
-  [-1,1].forEach(s=>g.add(bx(.05,.3,.8,dark,s*1.5,1.7,0)));
-  // ventilated rear panel with an exposed coil
-  const rp=bx(2.5,1.1,.03,dark,0,1.45,-.9);g.add(rp);
-  const coilM=M(0x9aa3a1,{roughness:.3,metalness:.85});
-  for(let r=0;r<6;r++){const y=.98+r*.17;g.add(bx(2.3,.03,.03,steel,0,y,-.93));
-    for(let i=0;i<=1;i++){const e=cyl(.085,.04,coilM,i?1.15:-1.15,y+.085,-.93,14);e.rotation.x=Math.PI/2;g.add(e);g.add(bx(.03,.17,.03,steel,i?1.15:-1.15,y+.085,-.93))}}
-  for(let i=0;i<46;i++)g.add(bx(.012,1.0,.05,M(0x6a7471,{roughness:.5,metalness:.6}),-1.12+i*.049,1.45,-.945));
-  g.add(bx(2.6,.06,.07,steel,0,2.03,-.93),bx(2.6,.06,.07,steel,0,.87,-.93));
-  [-1.28,1.28].forEach(x=>g.add(bx(.06,1.2,.07,steel,x,1.45,-.93)));
-  // rear ports
-  [[-.5,0x2b6cb0],[0,0x1a2320],[.5,0x9aa3a1]].forEach(p=>{const c=cyl(.09,.22,M(p[1]),p[0],.55,-.97);c.rotation.x=Math.PI/2;g.add(c)});
-  g.userData.hinge=hinge;
+  const plastic=new T.MeshPhysicalMaterial({color:0xf1f4f0,roughness:.4,clearcoat:.5,clearcoatRoughness:.3});
+  const lidM=new T.MeshPhysicalMaterial({color:0xe3e8e2,roughness:.4,clearcoat:.45,clearcoatRoughness:.3});
+  const dark=M(0x0c110f,{roughness:.8}),skirtM=M(0x34403a,{roughness:.5}),grey=M(0x8e9895,{roughness:.5}),steel=M(0xbfc7c7,{roughness:.28,metalness:.9}),rubber=M(0x151b19,{roughness:.9});
+  /* castors: two swivel with brakes at the front, two fixed at the back */
+  [[-1.2,-.7,0],[1.2,-.7,0],[-1.2,.7,1],[1.2,.7,1]].forEach(p=>{const c=new T.Group();c.position.set(p[0],0,p[1]);
+    c.add(bx(.2,.03,.2,steel,0,.285,0));c.add(bx(.03,.18,.14,steel,-.07,.19,0));c.add(bx(.03,.18,.14,steel,.07,.19,0));
+    const w=cyl(.125,.09,rubber,0,.125,0,24);w.rotation.z=Math.PI/2;c.add(w);const hub=cyl(.05,.11,steel,0,.125,0,12);hub.rotation.z=Math.PI/2;c.add(hub);
+    if(p[2])c.add(bx(.02,.03,.12,new T.MeshStandardMaterial({color:0xd13b3b,roughness:.5}),0,.27,.1));g.add(c)});
+  const skirt=slab(2.96,1.96,.28,.2,skirtM);skirt.position.y=.3;g.add(skirt);
+  /* moulded body, open at the top over the tank */
+  const body=slabH(3,2,.3,1.28,plastic,.03,[-1.38,-.4,.84]);body.position.y=.46;g.add(body);
+  const steelL=M(0xd9dedd,{roughness:.3,metalness:.85});
+  g.add(bx(.96,.02,1.66,steelL,-.89,1.0,0));
+  [[-1.345,0,.01,1.64],[-.435,0,.01,1.64]].forEach(a=>g.add(bx(a[2],.74,a[3],steelL,a[0],1.37,a[1])));
+  [-.805,.805].forEach(z=>g.add(bx(.9,.74,.01,steelL,-.89,1.37,z)));
+  const water=new T.Mesh(new T.PlaneGeometry(.92,1.62),new T.MeshStandardMaterial({color:0x6fa0ff,roughness:.15,metalness:.1,transparent:true,opacity:.6}));water.rotation.x=-Math.PI/2;water.position.set(-.89,1.34,0);g.add(water);
+  /* top: hinged lid, fixed strip with the outlet collar, closed cover over the dry end */
+  g.add(bx(.48,.06,1.92,lidM,-.06,1.77,0));g.add(bx(1.3,.06,1.92,lidM,.86,1.77,0));
+  const lidG=new T.Group();lidG.position.set(-.88,1.77,-.96);g.add(lidG);
+  const lid=bx(1.16,.07,1.9,lidM,0,.035,.95);lidG.add(lid);
+  lidG.add(bx(.34,.04,.08,dark,0,.09,1.82));[-.28,-.1,.1,.28].forEach(x=>lidG.add(bx(.02,.015,1.5,grey,x*1.5,.08,.95)));
+  [-.4,.4].forEach(x=>g.add(bx(.14,.06,.05,steel,-.88+x,1.8,-.96)));
+  /* outlet collar on top: standard round spigot for your own duct */
+  g.add(cyl(.24,.22,grey,-.06,1.9,0,40));
+  const cr=new T.Mesh(new T.TorusGeometry(.24,.02,8,40),dark);cr.rotation.x=Math.PI/2;cr.position.set(-.06,2.01,0);g.add(cr);
+  const lip=new T.Mesh(new T.TorusGeometry(.26,.014,8,40),steel);lip.rotation.x=Math.PI/2;lip.position.set(-.06,1.81,0);g.add(lip);
+  g.add(cyl(.2,.015,dark,-.06,2.015,0,32));
+  /* left end: washable foam filter drawer, handle on a moulded recess */
+  const filt=new T.Group();filt.position.set(-1.5,.78,0);g.add(filt);
+  filt.add(bx(.04,.34,.84,M(0xdfe4df,{roughness:.4}),-.02,0,0));
+  for(let i=0;i<9;i++)filt.add(bx(.01,.012,.72,dark,-.045,-.12+i*.03,0));
+  filt.add(bx(.03,.06,.2,dark,-.055,.14,0));
+  filt.add(bx(.7,.28,.76,M(0xe8d9a0,{roughness:.95}),.35,0,0));
+  g.add(bx(.01,.4,.9,dark,-1.5,.78,0));
+  const grips=[];[-1,1].forEach(s=>{const x=s*1.5;g.add(bx(.02,.34,1.2,dark,x+s*.005,1.35,0));
+    g.add(cyl(.04,1.1,rubber,x+s*.2,1.35,0,16).rotateX(Math.PI/2));[-.5,.5].forEach(z=>g.add(bx(.2,.045,.045,steel,x+s*.1,1.35,z)))});
+  /* right end: plain vent grille */
+  for(let i=0;i<11;i++)g.add(bx(.015,.04,1.5,dark,1.505,.58+i*.062,0));
+  /* front: status light bar, plus display and switch on the standalone unit */
+  const fc=document.createElement('canvas');fc.width=1024;fc.height=pod?150:520;const fx=fc.getContext('2d');
+  const ons=[1,1,0,0,0,0,0],cols=['#2d9d5a','#2d9d5a','#d13b3b','#e0a020','#d13b3b','#e0a020','#2d45e3'],labs=['POWER','RUN','FAULT','WATER','AIR','FILTER','AUX'];
+  fx.fillStyle='#e7ece5';fx.fillRect(0,0,1024,fc.height);
+  labs.forEach((l,i)=>{const cx=70+i*118,cy=pod?56:70;fx.fillStyle=ons[i]?cols[i]:'#c3ccc6';fx.beginPath();fx.arc(cx,cy,26,0,7);fx.fill();if(ons[i]){fx.strokeStyle=cols[i];fx.globalAlpha=.25;fx.lineWidth=10;fx.stroke();fx.globalAlpha=1}
+    fx.fillStyle='#1b2420';fx.font='600 17px monospace';fx.textAlign='center';fx.fillText(l,cx,cy+50)});
+  if(!pod){fx.fillStyle='#0a0f0d';fx.fillRect(40,170,640,320);fx.strokeStyle='#56625a';fx.lineWidth=5;fx.strokeRect(40,170,640,320);
+    fx.textAlign='left';fx.fillStyle='#8cf0c0';fx.font='600 46px monospace';fx.fillText('MISTING',70,240);fx.font='600 30px monospace';fx.fillText('LEVEL  100%',70,300);fx.fillRect(70,316,560,20);fx.fillText('WATER  10.2C',70,400);fx.fillText('FAN 45%',70,452);
+    fx.textAlign='center';fx.fillStyle='#1b2420';fx.font='600 22px monospace';fx.fillText('MASTER',850,215);fx.font='600 20px monospace';fx.fillText('ON / OFF',850,470)}
+  const ft=new T.CanvasTexture(fc);ft.encoding=T.sRGBEncoding;ft.anisotropy=4;
+  const fw=1.24,fh=pod?.18:.63;
+  g.add(bx(fw+.04,fh+.04,.02,M(0xdfe4df,{roughness:.4}),.84,pod?1.58:1.37,1.005));
+  const fp=new T.Mesh(new T.PlaneGeometry(fw,fh),new T.MeshBasicMaterial({map:ft}));fp.position.set(.84,pod?1.58:1.37,1.018);g.add(fp);
+  if(!pod){const rk=new T.MeshStandardMaterial({color:0x2d9d5a,roughness:.5});g.add(bx(.2,.27,.03,dark,1.3,1.32,1.025));g.add(bx(.16,.11,.02,rk,1.3,1.38,1.045));g.add(bx(.16,.11,.02,M(0x2a3330),1.3,1.26,1.04))}
+  /* rear: three connections (power, water in, drain) and plain vents */
+  [[-1.05,0x2b6cb0],[-.65,0x9aa3a1]].forEach(p=>{const c=cyl(.06,.14,M(p[1]),p[0],.78,-1.04,18);c.rotation.x=Math.PI/2;g.add(c)});
+  g.add(bx(.2,.14,.1,dark,1.3,.78,-1.03));
+  for(let i=0;i<8;i++)g.add(bx(.9,.025,.01,dark,.6,.6+i*.07,-1.003));
+  /* optional duct on the outlet: high, low or a long run */
+  function ext(pts){const t=new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(pts.map(p=>new T.Vector3(p[0],p[1],p[2])),false,'catmullrom',.04),80,.22,12,false),M(0xc3cbcd,{roughness:.5,metalness:.3}));t.castShadow=true;return t}
+  const EX=[null,ext([[-.06,2.0,0],[-.06,2.3,0],[-.06,2.9,0],[-.06,3.15,.25],[-.06,3.15,1.0],[-.06,3.15,2.4]]),
+    ext([[-.06,2.0,0],[-.06,2.25,-.1],[-.06,2.35,-.5],[-.06,2.35,-1.3],[-.06,2.1,-1.7],[-.06,1.0,-1.85],[-.06,.2,-1.95],[-.06,.14,-2.4],[-.06,.14,-3.4]]),
+    ext([[-.06,2.0,0],[-.06,2.2,0],[-.06,2.35,.3],[-.06,2.35,2.0],[-.06,2.35,5.2]])];
+  EX.forEach(e=>{if(e){e.visible=false;g.add(e)}});
+  g.userData.set=function(s){s=s||{};lidG.rotation.x=-1.75*(s.lid||0);filt.position.x=-1.5-.78*(s.filt||0);const d=Math.round(s.duct||0);EX.forEach((e,i)=>{if(e)e.visible=(i===d)})};
   return g;
 }
 
@@ -226,20 +257,20 @@ function buildPod(st,vsel){vsel=vsel||'#vwP';
   // wall-mounted: heavy-duty cantilever shelf bolted to the rear wall, gusset braces back to the wall
   root.add(bx(8.6,.14,1.95,cladD,0,1.13,-5.98));root.add(bx(8.6,.5,.06,darkM,0,1.4,-5.05));
   [-4,-2,0,2,4].forEach(x=>{const g=bx(.12,2.0,.1,steelM0,x,.68,-5.9);g.rotation.x=-1.12;root.add(g);root.add(bx(.3,.3,.05,steelM0,x,.45,-5.03))});
-  const H=buildHum();H.scale.setScalar(.8);H.rotation.y=Math.PI;H.position.set(-2.9,1.2,-6.02);root.add(H);
+  const H=buildHum({pod:true});H.scale.setScalar(.8);H.rotation.y=Math.PI;H.position.set(-2.9,1.2,-6.02);root.add(H);
   root.add(bx(2.1,1.5,.05,darkM,-2.9,2.1,-5.03));
   [-.4,0,.4].forEach(o=>cylA(.06,.3,steelM0,-2.9+o,1.7,-5.15,'z'));
-  // humidifier fresh-air inlet (left): goose-neck hood, G4 filter, fan, motorised damper
-  const ip=pipe([[-3.54,3.46,-5.94],[-3.54,7.1,-5.94],[-3.54,7.1,-6.4],[-3.54,6.6,-6.4]],.25,foil,.3);bands(ip,[.12,.6,.78],.25,steelM0);
-  cylA(.34,.55,M(0xe6e9e4,{roughness:.45,metalness:.3}),-3.54,4.2,-5.94,'y');cylA(.37,.05,steelM0,-3.54,3.93,-5.94,'y');cylA(.37,.05,steelM0,-3.54,4.47,-5.94,'y');
-  cylA(.31,.5,M(0x39433f,{roughness:.5,metalness:.7}),-3.54,5.0,-5.94,'y');
-  root.add(bx(.55,.3,.3,painted,-3.54,5.8,-5.94));cylA(.1,.2,steelM0,-3.54,5.8,-5.7,'z');
-  const mesh=new T.Mesh(new T.CircleGeometry(.27,24),M(0x2b3330,{roughness:.8}));mesh.rotation.x=Math.PI/2;mesh.position.set(-3.54,6.58,-6.4);root.add(mesh);
-  [4.2,6.0].forEach(y=>root.add(bx(.2,.1,.9,steelM0,-3.54,y,-5.5)));
+  // humidifier fresh-air inlet (beside its filter end): goose-neck hood, G4 filter, fan, motorised damper
+  const ip=pipe([[-1.66,1.82,-6.02],[-1.3,1.82,-6.02],[-1.25,2.5,-5.94],[-1.25,7.1,-5.94],[-1.25,7.1,-6.4],[-1.25,6.6,-6.4]],.25,foil,.3);bands(ip,[.12,.6,.78],.25,steelM0);
+  cylA(.34,.55,M(0xe6e9e4,{roughness:.45,metalness:.3}),-1.25,4.2,-5.94,'y');cylA(.37,.05,steelM0,-1.25,3.93,-5.94,'y');cylA(.37,.05,steelM0,-1.25,4.47,-5.94,'y');
+  cylA(.31,.5,M(0x39433f,{roughness:.5,metalness:.7}),-1.25,5.0,-5.94,'y');
+  root.add(bx(.55,.3,.3,painted,-1.25,5.8,-5.94));cylA(.1,.2,steelM0,-1.25,5.8,-5.7,'z');
+  const mesh=new T.Mesh(new T.CircleGeometry(.27,24),M(0x2b3330,{roughness:.8}));mesh.rotation.x=Math.PI/2;mesh.position.set(-1.25,6.58,-6.4);root.add(mesh);
+  [4.2,6.0].forEach(y=>root.add(bx(.2,.1,.9,steelM0,-1.25,y,-5.5)));
   // misted-air outlet (right): rises the rear wall to the ceiling distribution line
-  const hp=pipe([[-2.26,3.46,-5.94],[-2.26,4.3,-5.94],[-2.26,4.3,-5.45],[-2.26,8.3,-5.45],[-2.26,8.3,-4.95]],.25,foil,.3);bands(hp,[.2,.4,.55,.7,.85],.25,steelM0);
-  [5.0,6.6,7.8].forEach(y=>root.add(bx(.3,.12,.5,steelM0,-2.26,y,-5.2)));
-  cylA(.34,.07,darkM,-2.26,8.3,-5.01,'z');
+  const hp=pipe([[-2.85,2.82,-6.02],[-2.85,4.3,-6.0],[-2.85,4.3,-5.45],[-2.85,8.3,-5.45],[-2.85,8.3,-4.95]],.25,foil,.3);bands(hp,[.2,.4,.55,.7,.85],.25,steelM0);
+  [5.0,6.6,7.8].forEach(y=>root.add(bx(.3,.12,.5,steelM0,-2.85,y,-5.2)));
+  cylA(.34,.07,darkM,-2.85,8.3,-5.01,'z');
   // active cooling unit
   const act=new T.Group();act.position.set(3,1.2,-5.95);act.scale.setScalar(.78);root.add(act);
   const base=slab(2.5,1.7,.12,.2,darkM);act.add(base);
@@ -253,10 +284,6 @@ function buildPod(st,vsel){vsel=vsel||'#vwP';
   const wd=cyl(.66,.04,darkM,0,2.78,0,40);act.add(wd);
   [.66,.46,.26].forEach(r=>{const t=new T.Mesh(new T.TorusGeometry(r,.02,6,40),steelM0);t.rotation.x=Math.PI/2;t.position.y=2.8;act.add(t)});
   const fan=new T.Group();fan.position.y=2.77;for(let i=0;i<5;i++){const b=bx(.55,.015,.2,M(0x3a4642),0,0,0);b.position.x=.3;const h=new T.Group();h.rotation.y=i*Math.PI*2/5;h.add(b);fan.add(h)}act.add(fan);
-  // coolant loop, humidifier to active cooling unit
-  const lp1=pipe([[1.99,1.7,-5.9],[-1.7,1.7,-5.9]],.12,blueI,.3),lp2=pipe([[1.99,2.1,-5.9],[-1.7,2.1,-5.9]],.12,greyI,.3);
-  [1.1,-1.1].forEach(x=>root.add(bx(.12,.6,.2,steelM0,x,1.9,-5.9)));
-  root.add(bx(.7,.5,.5,painted,0,1.5,-5.95));cylA(.2,.45,M(0x39433f,{roughness:.5,metalness:.7}),0,1.5,-5.6,'z');
   // controller enclosure
   const ctl=new T.Group();ctl.position.set(.9,5.5,-5.275);root.add(ctl);
   ctl.add(bx(1.8,2.6,.45,painted,0,0,0));
@@ -269,10 +296,10 @@ function buildPod(st,vsel){vsel=vsel||'#vwP';
   const lk=cyl(.07,.06,steelM0,.7,-.2,-.26,16);lk.rotation.x=Math.PI/2;ctl.add(lk);
   [-.6,-.2,.2,.6].forEach(x=>ctl.add(cyl(.06,.16,blackI,x,-1.35,0,12)));
   // conduits: controller to humidifier, cooling unit and roof
-  pipe([[.3,4.15,-5.275],[.3,3.5,-5.275],[-2.9,3.5,-5.275],[-2.9,3.4,-5.275]],.06,blackI,.2);
+  pipe([[.3,4.15,-5.275],[.3,3.3,-5.275],[-2.9,3.3,-5.275],[-2.9,2.8,-5.275]],.06,blackI,.2);
   pipe([[.7,4.15,-5.275],[.7,3.5,-5.275],[3.0,3.5,-5.275],[3.0,3.35,-5.275]],.06,blackI,.2);
   pipe([[1.5,6.8,-5.275],[1.5,9.15,-5.275],[1.5,9.15,-4.0]],.06,blackI,.2);
-  root.add(bx(.3,.2,.12,painted,-2.9,3.55,-5.2));
+  root.add(bx(.3,.2,.12,painted,-2.9,2.95,-5.2));
   // rear vents inside the cabin handled with the interiors
 
   // register fade groups
@@ -289,7 +316,7 @@ function buildPod(st,vsel){vsel=vsel||'#vwP';
   const lab={w:V(0,.03,6.2),d:V(6.2,.03,0),h:V(-6.2,5,6.2)};
   const els={};document.querySelectorAll(vsel+' .dim').forEach(e=>els[e.dataset.k]=e);
   const tagEls=[...document.querySelectorAll(vsel+' .tag')];
-  const tagA={roof:V(-.2,10.1,-2.6),duct:V(-1.1,6.2,-5.6),ctrl:V(1.9,5.6,-5.5),hum:V(-2.9,3.5,-6.2),act:V(4.0,3.4,-6.4),mist:V(0,7.5,-.6),uv:V(3.3,8.4,-1.0),touch:V(1.0,6.1,5.2)};
+  const tagA={roof:V(-.2,10.1,-2.6),duct:V(-1.1,6.2,-5.6),ctrl:V(1.9,5.6,-5.5),hum:V(-2.9,3.0,-6.3),act:V(4.0,3.4,-6.4),mist:V(0,7.5,-.6),uv:V(3.3,8.4,-1.0),touch:V(1.0,6.1,5.2)};
 
   // interiors
   const interiors={};
@@ -349,7 +376,7 @@ function buildPod(st,vsel){vsel=vsel||'#vwP';
     fades.forEach(f=>{const hide=f.k==='f'||f.k==='r'||f.k==='o';const o=hide?this.op:1;f.m.opacity=f.base*o;f.m.depthWrite=o>.95;});
     pl1.intensity=pl2.intensity=1.1*(1-this.op);
     if(!reduce)fan.rotation.y+=dt*2.2;
-    this.humO+=(this.humT-this.humO)*(1-Math.pow(.003,dt));H.userData.hinge.rotation.y=-1.95*this.humO;
+    this.humO+=(this.humT-this.humO)*(1-Math.pow(.003,dt));H.userData.set({lid:this.humO});
     tagEls.forEach(e=>{const k=e.dataset.a,a=tagA[k];if(!a||this.tags.indexOf(k)<0){e.style.opacity=0;return}pv.copy(a).project(st.cam);if(pv.z>1){e.style.opacity=0;return}e.style.opacity=1;const px=clamp((pv.x*.5+.5)*st.w,24,st.w-(st.w<600?150:190)),py=clamp((-pv.y*.5+.5)*st.h,90,st.h-110);e.style.transform='translate('+px+'px,'+py+'px) translate(-14px,-50%)'});
     dimG.visible=this.dimsOn;
     ['w','d','h'].forEach(k=>{const e=els[k];if(!e)return;if(!this.dimsOn){e.style.opacity=0;return}pv.copy(lab[k]).project(st.cam);if(pv.z>1){e.style.opacity=0;return}e.style.opacity=1;const px=clamp((pv.x*.5+.5)*st.w,48,st.w-48),py=clamp((-pv.y*.5+.5)*st.h,60,st.h-130);e.style.transform='translate('+px+'px,'+py+'px) translate(-50%,-50%)'});
