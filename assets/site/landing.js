@@ -28,9 +28,9 @@ const add=(x,z,s,ci,kind)=>items.push({x,z,s,ci,kind,d:Math.hypot(x,z)});
 // acres field
 for(let x=-64;x<=64;x+=16)for(let z=-48;z<=48;z+=16){if(items.some(o=>o.x===x&&o.z===z)||(x===0&&z===0))continue;add(x,z,1,Math.abs(x*3+z)%6,'field')}
 // regions
-const REG=[[-640,430],[-1010,640]];const NAMES=['Chennai','Salem','Coimbatore'];
+const REG=[[-520,520],[-980,-60]];const NAMES=['Chennai','Salem','Coimbatore'];
 const rnd=(()=>{let s=7;return()=>(s=(s*16807)%2147483647)/2147483647})();
-REG.forEach((c,ri)=>{const cols=5,rows=4;for(let i=0;i<cols;i++)for(let j=0;j<rows;j++)if(rnd()>.12)add(c[0]+(i-2)*78+rnd()*10,c[1]+(j-1.5)*78+rnd()*10,6,(ri+i+j)%6,'reg'+ri)});
+REG.forEach((c,ri)=>{const cols=4,rows=3;for(let i=0;i<cols;i++)for(let j=0;j<rows;j++)if(rnd()>.1)add(c[0]+(i-1.5)*62+rnd()*6,c[1]+(j-1)*62+rnd()*6,4.6,(ri+i+j)%6,'reg'+ri)});
 const N=items.length;
 const bodyM=new T.MeshStandardMaterial({color:0xf3f5f1,roughness:.45,transparent:true,opacity:0});
 const baseM=new T.MeshStandardMaterial({color:0x3a4440,roughness:.8,transparent:true,opacity:0});
@@ -66,22 +66,23 @@ const plot=new T.LineLoop(new T.BufferGeometry().setFromPoints(plotPts),new T.Li
 
 /* regions: beacons, hub, links, packets */
 const regionG=new T.Group();regionG.visible=false;scene.add(regionG);
-const hubPos=V(-450,420,300);
+const hubPos=V(-470,430,160);
 const hub=new T.Group();hub.position.copy(hubPos);regionG.add(hub);
 hub.add(new T.Mesh(new T.IcosahedronGeometry(28,1),new T.MeshBasicMaterial({color:0xe0457b,wireframe:true})));
 hub.add(new T.Mesh(new T.SphereGeometry(12,20,16),new T.MeshBasicMaterial({color:0xe0457b})));
 const hr=new T.Mesh(new T.TorusGeometry(55,2,8,60),new T.MeshBasicMaterial({color:0xe0457b,transparent:true,opacity:.6}));hr.rotation.x=Math.PI/2;hub.add(hr);
 const targets=[V(0,6,0)].concat(REG.map(c=>V(c[0],6,c[1])));
-const links=[],pk=[];
+const links=[],pk=[],linkMats=[],beams=[],pulses=[];
 targets.forEach((t,i)=>{
   const lg=new T.BufferGeometry().setFromPoints([hubPos,t]);
-  const l=new T.Line(lg,new T.LineBasicMaterial({color:0xe0457b,transparent:true,opacity:.55}));regionG.add(l);links.push(t);
-  if(i>0){const b=new T.Mesh(new T.CylinderGeometry(12,12,300,12,1,true),new T.MeshBasicMaterial({color:COL[(i-1)%6],transparent:true,opacity:.3,side:T.DoubleSide,depthWrite:false}));b.position.set(t.x,150,t.z);regionG.add(b)}
+  const lm=new T.LineBasicMaterial({color:0xe0457b,transparent:true,opacity:0});
+  regionG.add(new T.Line(lg,lm));links.push(t);linkMats.push(lm);
+  const col=i===0?0x2d45e3:COL[(i-1)%6];
+  const bm=new T.Mesh(new T.CylinderGeometry(10,10,300,12,1,true),new T.MeshBasicMaterial({color:col,transparent:true,opacity:.34,side:T.DoubleSide,depthWrite:false}));bm.position.set(t.x,0,t.z);bm.scale.y=.001;regionG.add(bm);beams.push(bm);
+  const pr=new T.Mesh(new T.RingGeometry(46,52,64),new T.MeshBasicMaterial({color:col,transparent:true,opacity:0,side:T.DoubleSide,depthWrite:false}));pr.rotation.x=-Math.PI/2;pr.position.set(t.x,1.5,t.z);regionG.add(pr);pulses.push(pr);
+  const cap=new T.Mesh(new T.SphereGeometry(14,16,12),new T.MeshBasicMaterial({color:col}));cap.position.set(t.x,306,t.z);bm.userData.cap=cap;regionG.add(cap);
 });
-const pkM=new T.InstancedMesh(new T.SphereGeometry(9,10,8),new T.MeshBasicMaterial({color:0xe0457b}),targets.length*3);pkM.frustumCulled=false;regionG.add(pkM);
-// acres beacon
-{const b=new T.Mesh(new T.CylinderGeometry(12,12,300,12,1,true),new T.MeshBasicMaterial({color:0x2d45e3,transparent:true,opacity:.3,side:T.DoubleSide,depthWrite:false}));b.position.set(0,150,0);regionG.add(b)}
-
+const pkM=new T.InstancedMesh(new T.SphereGeometry(11,10,8),new T.MeshBasicMaterial({color:0xe0457b}),targets.length*3);pkM.frustumCulled=false;regionG.add(pkM);
 /* power scene: sun -> solar array -> POD, grid pylon -> POD, live share */
 const powerG=new T.Group();powerG.visible=false;scene.add(powerG);
 const sunTex=(()=>{const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d'),g=x.createRadialGradient(128,128,0,128,128,128);g.addColorStop(0,'rgba(255,214,102,1)');g.addColorStop(.25,'rgba(255,190,60,.55)');g.addColorStop(1,'rgba(255,190,60,0)');x.fillStyle=g;x.fillRect(0,0,256,256);return new T.CanvasTexture(c)})();
@@ -131,12 +132,12 @@ const KF=[
  {th:.4,ph:1.32,r:18,t:[1.2,4.8,5],cut:0},
  {th:.78,ph:1.0,r:108,t:[0,5,-8],cut:0},
  {th:.82,ph:.95,r:310,t:[0,0,-6],cut:0},
- {th:.6,ph:.9,r:1950,t:[-420,60,300],cut:0},
+ {th:.62,ph:.85,r:2300,t:[-760,60,160],cut:0},
  {th:.9,ph:1.12,r:118,t:[-12,16,-5],cut:0},
  {th:.5,ph:1.15,r:64,t:[0,15,-3],cut:0}];
 const SC=['pod','pod','pod','pod','micro','acres','regions','power','fail'];
 const TAGS=[[],['mist','uv'],['roof','duct','ctrl','hum','act'],['touch'],[],[],[],[],[]];
-let sc='pod',failT=0,curS=-1;
+let sc='pod',failT=0,curS=-1,regT=0;
 const tgt={ground:0,mini:0,F:0,R:0,regions:0,power:0,fail:0};
 const top=document.getElementById('top'),dots=top.querySelector('.dots');
 sP.orbit.sm=.0001;
@@ -148,6 +149,7 @@ function setScene(i){
   tgt.F=(sc==='acres'||sc==='regions')?1:0;tgt.R=sc==='regions'?1:0;
   tgt.regions=sc==='regions'?1:0;tgt.power=sc==='power'?1:0;tgt.fail=sc==='fail'?1:0;
   if(sc==='fail'){failT=0;netPill(false)}
+  if(sc==='regions')regT=0;
 }
 function scrub(t){
   const u=UI.pos(top,true),k=UI.kf(KF,u),o=sP.orbit;
@@ -189,9 +191,15 @@ function frame(now){
     mini.visible=miniA>.01;[bodyM,baseM,bandM,dkM].forEach(m=>{m.opacity=miniA;const t=miniA<.99;if(m.transparent!==t){m.transparent=t;m.needsUpdate=true}});ringM.opacity=.3*miniA;
     podRing.visible=plot.visible=mini.visible;podRing.material.opacity=.3*miniA;plot.material.opacity=.55*clamp(miniA*(1-gF),0,1);
     if(mini.visible)layout();
+    scene.fog.far+=((tgt.regions?9500:4200)-scene.fog.far)*(1-Math.pow(.1,dt));
     regionG.visible=tgt.regions>0;
     powerG.visible=sc==='power';failG.visible=sc==='fail';
-    if(regionG.visible){hub.rotation.y+=dt*.4;hr.rotation.z+=dt*.5;for(let i=0;i<targets.length;i++)for(let k=0;k<3;k++){const f=((t*.22+k/3+i*.13)%1),idx=i*3+k;pm.position.copy(hubPos).lerp(targets[i],f);pm.scale.setScalar(1);pm.updateMatrix();pkM.setMatrixAt(idx,pm.matrix)}pkM.instanceMatrix.needsUpdate=true}
+    if(regionG.visible){regT+=dt;hub.rotation.y+=dt*.4;hr.rotation.z+=dt*.5;
+      for(let i=0;i<targets.length;i++){const rv=sm(clamp((regT-.4-i*.8)/.9,0,1));
+        linkMats[i].opacity=.75*rv;beams[i].scale.y=Math.max(.001,rv);beams[i].position.y=150*rv;beams[i].userData.cap.position.y=300*rv+6;beams[i].userData.cap.scale.setScalar(rv>.01?1:.001);
+        const f=(t*.5+i*.31)%1;pulses[i].scale.setScalar(.6+f*1.7);pulses[i].material.opacity=(1-f)*.7*rv;
+        for(let k=0;k<3;k++){const q=((t*.22+k/3+i*.13)%1),idx=i*3+k;pm.position.copy(hubPos).lerp(targets[i],q);pm.scale.setScalar(rv>.5?1:.0001);pm.updateMatrix();pkM.setMatrixAt(idx,pm.matrix)}}
+      pkM.instanceMatrix.needsUpdate=true}
     if(powerG.visible){
       const ph=(t%10)/10,share=.12+.76*sm(Math.sin(ph*Math.PI*2-1.2)*.5+.5);
       for(let i=0;i<14;i++){sunC.getPoint((t*.25+i/14)%1,pm.position);pm.scale.setScalar(.4+share);pm.updateMatrix();sP0.setMatrixAt(i,pm.matrix)}
@@ -211,7 +219,7 @@ function frame(now){
       const rr=((t*.5)%1);runRing.scale.setScalar(1+rr*.9);runRing.material.opacity=.6*(1-rr);
     }
     pod.update(dt,t);sP.orbit.update(dt,sP.cam);sP.cam.updateMatrixWorld();sP.renderer.render(sP.scene,sP.cam);
-    const pv=new T.Vector3(),pts=[V(0,70,0)].concat(REG.map(c=>V(c[0],200,c[1])));rlabs.forEach((el,i)=>{if(!(sc==='acres'&&i===0)&&sc!=='regions'){el.style.opacity=0;return}pv.copy(i===0&&sc==='acres'?V(0,30,0):pts[i]).project(sP.cam);if(pv.z>1){el.style.opacity=0;return}el.style.opacity=1;el.style.transform='translate('+clamp((pv.x*.5+.5)*sP.w,40,sP.w-110)+'px,'+clamp((-pv.y*.5+.5)*sP.h,90,sP.h-90)+'px) translate(-50%,-100%)'});
+    const pv=new T.Vector3(),pts=[V(0,330,0)].concat(REG.map(c=>V(c[0],330,c[1])));rlabs.forEach((el,i)=>{if(!(sc==='acres'&&i===0)&&sc!=='regions'){el.style.opacity=0;return}pv.copy(i===0&&sc==='acres'?V(0,30,0):pts[i]).project(sP.cam);if(pv.z>1){el.style.opacity=0;return}el.style.opacity=(sc==='regions'&&regT<.5+i*.8)?0:1;el.style.transform='translate('+clamp((pv.x*.5+.5)*sP.w,40,sP.w-110)+'px,'+clamp((-pv.y*.5+.5)*sP.h,90,sP.h-90)+'px) translate(-50%,-100%)'});
   }
   HS.tick(dt,t);
   requestAnimationFrame(frame);
