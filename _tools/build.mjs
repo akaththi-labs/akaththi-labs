@@ -30,8 +30,10 @@ for (const page of PAGES) {
   write(page.file, explicit(layout(page, r)));
 }
 
-const urls = PAGES.filter((p) => p.slug !== "404")
-  .map((p) => `  <url><loc>${CONFIG.url}${p.path}</loc></url>`)
+const productPaths = ["/", "/pod/", "/humidifier/", "/kaani/", "/about/"];
+const urls = productPaths
+  .map((p) => `  <url><loc>${CONFIG.url}${p}</loc></url>`)
+  .concat(PAGES.filter((p) => p.slug !== "404").map((p) => `  <url><loc>${CONFIG.url}${p.path}</loc></url>`))
   .join("\n");
 write(
   "sitemap.xml",
