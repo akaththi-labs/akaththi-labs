@@ -1,123 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>POD 1.0 | Akaththi Labs</title>
-  <meta name="description" content="POD 1.0 is a modular, climate-controlled cultivation chamber from Akaththi Labs, developed with research partners and tested on our own farm in Chennai.">
-  <meta name="theme-color" content="#f1f4f0">
-  <link rel="canonical" href="https://akaththi-labs.github.io/akaththi-labs/pod/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Akaththi Labs">
-  <meta property="og:title" content="POD 1.0 | Akaththi Labs">
-  <meta property="og:description" content="POD 1.0 is a modular, climate-controlled cultivation chamber from Akaththi Labs, developed with research partners and tested on our own farm in Chennai.">
-  <meta property="og:url" content="https://akaththi-labs.github.io/akaththi-labs/pod/">
-  <meta property="og:image" content="https://akaththi-labs.github.io/akaththi-labs/assets/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Akaththi Labs. Automation for living systems.">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="POD 1.0 | Akaththi Labs">
-  <meta name="twitter:description" content="POD 1.0 is a modular, climate-controlled cultivation chamber from Akaththi Labs, developed with research partners and tested on our own farm in Chennai.">
-  <meta name="twitter:image" content="https://akaththi-labs.github.io/akaththi-labs/assets/og-image.png">
-  <link rel="icon" href="../favicon.ico" sizes="any">
-  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" sizes="any">
-  <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="../assets/favicon-16.png" sizes="16x16" type="image/png">
-  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-  <link rel="manifest" href="../site.webmanifest">
-  <link rel="preload" href="../assets/fonts/martian-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../assets/css/site.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POD 1.0 · Akaththi Labs</title>
+<meta name="description" content="POD 1.0 is a complete farm in a box, powered by Kaani Intelligence.">
+<link rel="preload" href="../assets/fonts/martian-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#f1f4f0">
+
+<link rel="stylesheet" href="../assets/site/site.css">
+<link rel="canonical" href="https://akaththi-labs.github.io/akaththi-labs/pod/">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="manifest" href="../site.webmanifest">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Akaththi Labs"><meta property="og:title" content="POD 1.0 · Akaththi Labs"><meta property="og:description" content="POD 1.0 is a complete farm in a box, powered by Kaani Intelligence."><meta property="og:url" content="https://akaththi-labs.github.io/akaththi-labs/pod/"><meta property="og:image" content="https://akaththi-labs.github.io/akaththi-labs/assets/og-image.png"><meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="mark" href="../index.html"><img src="../assets/mark.svg" alt="" width="30" height="30">Akaththi Labs</a>
-      <nav class="nav" aria-label="Main">
-        <a href="../pod/index.html" aria-current="page">POD</a>
-        <a href="../kaani/index.html">Kaani</a>
-        <a href="../managed-farms/index.html">managed farms</a>
-        <a href="../about/index.html">about</a>
-      </nav>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="Akaththi Labs home"><img src="../assets/mark.svg" alt="" width="28" height="28"><span>Akaththi Labs</span><i class="cur" aria-hidden="true"></i><small>Agriculture technology and automation</small></a>
+    <ul><li><a href="../pod/index.html" aria-current="page">POD</a></li><li><a href="../humidifier/index.html">Humidifier</a></li><li><a href="../kaani/index.html">Kaani</a></li><li><a href="../managed-farms/index.html">Managed farms</a></li><li><a href="../about/index.html">About</a></li></ul>
+    <a class="btn" href="../index.html#enquire">Enquire</a>
+  </div>
+</nav>
+<main>
+<section class="pagehero"><div class="wrap"><span class="eyebrow">POD 1.0 · Available now</span><h1>A complete farm. <em>Ready to grow.</em></h1><p>The perfect harvest, with less energy.</p></div></section>
+<section class="tour stage" id="podTour" data-s="0">
+  <div class="stick">
+    <div class="viewer full" id="vwPT"><canvas id="cvPT" role="img" aria-label="Interactive 3D model of POD 1.0. Scroll to follow its story."></canvas>
+      <div class="share" id="shareBarP"><span class="s">Solar</span><b><i id="shS"></i></b><span class="g">Grid</span></div>
     </div>
-  </header>
-  <main id="main">
-
-    <section class="wrap head">
-      <h1 class="page-title">POD 1.0</h1>
-      <p class="lead">A modular, climate-controlled chamber for growing crops that a hot, humid climate does not allow. It is built to hold temperature, humidity, fresh air and light inside a narrow window, so each cycle behaves like the last.</p>
-      <dl class="spec">
-        <dt>for</dt><dd>Our own farm today. Research firms, institutions and growers next.</dd>
-        <dt>with</dt><dd>Research firms and institutions, who work with us on POD 1.0.</dd>
-        <dt>status</dt><dd><span class="mono st-building">building</span>. POD 1.0 is being tested on our farm in Chennai.</dd>
-        <dt>grows</dt><dd>Mushrooms and microgreens on our farm. Saffron is under study.</dd>
-        <dt>runs on</dt><dd><a href="../kaani/index.html">Kaani Intelligence</a></dd>
-        <dt>offered as</dt><dd>Sale or lease. Terms are not set yet.</dd>
-      </dl>
-    </section>
-
-    <section class="section">
-      <div class="wrap split">
-        <h2 class="h2">The problem</h2>
-        <ul class="list flush">
-          <li>Temperature and humidity drift through the day. Pins abort and contamination follows.</li>
-          <li>In hot, humid places, cooling a whole room all year is costly, so many growers stop in summer.</li>
-          <li>Each crop and each growth stage wants different conditions, and few farms can switch between them.</li>
-          <li>Chambers that do work are often expensive, one-off builds that are hard to repeat.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section section-rule">
-      <div class="wrap split">
-        <h2 class="h2">What it is built to do</h2>
-        <ul class="list flush">
-          <li>Hold a set climate through the day and night without someone adjusting it.</li>
-          <li>Record every reading, so one cycle can be compared with the next.</li>
-          <li>Show the chamber as it runs, on live dashboards.</li>
-          <li>Spend energy only on the small, sealed volume that needs it.</li>
-          <li>Switch settings by crop and growth stage: fruiting first, other stages and crops after.</li>
-          <li>Come as a unit, so capacity grows by adding units.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section section-rule">
-      <div class="wrap split">
-        <h2 class="h2">Where it stands</h2>
-        <div class="prose">
-          <p>We are developing POD 1.0 together with research firms and institutions, and testing it on our own farm. If you do research on cultivation, we want to hear from you.</p>
-          <p>POD 1.0 is our own production unit. Smaller and larger versions follow once the first one is proven.</p>
-          <p>We will publish measured results after a full grow cycle has run without anyone stepping in. We will not publish them before.</p>
-          <p>Design details are protected and are not published.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-rule">
-      <div class="wrap">
-        <div class="prose">
-          <h2 class="h2">Ask about this</h2>
-          <p>A research firm or institution interested in POD 1.0, or a grower who wants a POD? Tell us what you want to grow and measure.</p>
-          <a class="button" href="https://github.com/akaththi-labs/akaththi-labs/issues/new?title=Enquiry">Send an enquiry</a>
-          <p class="note">This opens a GitHub issue, so your message will be public.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="site-footer">
-    <div class="wrap">
-      <p>Akaththi Labs, Chennai, India. Automation and technology for living systems.</p>
-      <p>&copy; 2026 Akaththi Farms Private Limited. The source of this site is MIT licensed. Products and designs are not covered by that licence.</p>
-      <div class="footer-links">
-        <a href="https://github.com/akaththi-labs">GitHub</a>
-        <a href="https://github.com/akaththi-labs/akaththi-labs/blob/main/LICENSE">Site licence</a>
-        <a href="../open-source/index.html">Open source</a>
-        <a href="../about/index.html#enquire">Enquiries</a>
-      </div>
+    <nav class="dots" aria-label="POD 1.0 highlights"></nav>
+  </div>
+  <div class="steps">
+    <article class="step" data-s="0"><div class="sc"><span class="k">01 · Climate</span><h2>Cooling that works with less.</h2><p>Cooling on the roof does the easy work. The rear wall steps in only when it is needed.</p></div></article>
+    <article class="step" data-s="1"><div class="sc"><span class="k">02 · Harvest</span><h2>The perfect harvest.</h2><p>Air moves evenly through every rack, so each cycle runs the same way.</p></div></article>
+    <article class="step" data-s="2"><div class="sc"><span class="k">03 · Power</span><h2>Grid, sun, or both.</h2><p>POD 1.0 runs on the grid. A hybrid solar model arrives with POD 1.2.</p></div></article>
+    <article class="step" data-s="3"><div class="sc"><span class="k">04 · Modes</span><h2>More than one mode.</h2><p>Sterilisation uses the misting heads and UV lamps to clean the room between cycles.</p></div></article>
+    <article class="step" data-s="4"><div class="sc"><span class="k">05 · Panels</span><h2>Built panel by panel.</h2><p>Insulated panels, field assembled indoors or outdoors.</p></div></article>
+    <article class="step" data-s="5"><div class="sc"><span class="k">06 · Racks</span><h2>Grows high, not wide.</h2><p>Stacked racks make full use of a 10 × 10 ft floor.</p></div></article>
+    <article class="step" data-s="6"><div class="sc"><span class="k">07 · Sizes</span><h2>Sized in panels.</h2><p>The first size is about 10 × 10 ft and 8 ft high. Larger sizes add whole panels.</p></div></article>
+  </div>
+</section>
+<div class="wrap">
+<section class="fs"><div class="wrap" style="display:contents"></div><div class="fx"><span class="eyebrow">Resilience</span><h2>Designed for failure.</h2><p>Lose the internet and the POD keeps running. Lose power and it fails safe, then tells your team.</p></div><div class="fv"><div class="stack" style="max-width:460px;margin:0 auto"><svg id="stackSvgP" viewBox="0 -70 820 830" role="img" aria-label="Kaani layers: node, on-site stack, cloud and app."></svg></div><div class="tl"><button class="chip" data-sc="ok" aria-pressed="true">All connected</button><button class="chip" data-sc="net" aria-pressed="false">Internet down</button><button class="chip" data-sc="power" aria-pressed="false">Power cut</button></div><p class="note-s" id="scT" style="text-align:center;color:var(--ink);font-weight:500"></p><ul id="scL" style="display:none"></ul><p id="scD" class="note-s" style="text-align:center"></p></div></section>
+<section class="fs rev"><div class="wrap" style="display:contents"></div><div class="fx"><span class="eyebrow">Crops</span><h2>Today mushrooms. Tomorrow anything.</h2><p>A new crop or a new variety is just an update. Extra crops come as paid crop packs, added with no hardware change.</p></div><div class="fv"><div class="crops" id="crops">
+<div class="crop" style="--c:#2d45e3"><i>Ps</i><div><b>Oyster mushrooms</b><span>Included with every POD</span></div><button class="btn done" disabled>Included</button></div>
+<div class="crop" style="--c:#e0457b"><i>Gl</i><div><b>Reishi and exotics pack</b><span>Crop pack · added by update<div class="bar"><u></u></div></span></div><button class="btn solid" data-inst>Add pack</button></div>
+<div class="crop" style="--c:#8a4b0f"><i>Hc</i><div><b>Lion’s mane pack</b><span>Crop pack · added by update<div class="bar"><u></u></div></span></div><button class="btn solid" data-inst>Add pack</button></div>
+<div class="crop" style="--c:#1b2620"><i>Sf</i><div><b>Saffron pack</b><span>Crop pack · coming soon</span></div><button class="btn" disabled>Soon</button></div>
+<div class="crop" style="--c:#56625a"><i>+</i><div><b>Your crop</b><span>Let’s build the pack together</span></div><a class="btn" href="../index.html#enquire">Collaborate</a></div></div></div></section>
+<section class="fs"><div class="wrap" style="display:contents"></div><div class="fx"><span class="eyebrow">Kaani Intelligence</span><h2>The intelligence is the product.</h2><p>Every POD runs on Kaani, a complete farm operating system that keeps getting better while it grows your crops.</p><a class="btn solid" href="../kaani/index.html">Learn about Kaani →</a></div><div class="fv"><div class="stack" style="max-width:400px;margin:0 auto;pointer-events:none"><svg id="stackSvgM" viewBox="0 -70 820 830" aria-hidden="true"></svg></div></div></section>
+<section class="fs rev"><div class="wrap" style="display:contents"></div><div class="fx"><span class="eyebrow">Sizes</span><h2>A platform, not a size.</h2><p>The first size is about 10 × 10 ft and 8 ft high. Larger sizes are planned in whole panels.</p></div><div class="fv"><svg class="dg" viewBox="0 0 600 300" role="img" aria-label="Plan view of the first POD size, and a planned larger size.">
+<rect x="50" y="90" width="102" height="102" fill="#2d45e3" fill-opacity="0.12" stroke="#2d45e3" stroke-width="2.4"/><line x1="84" y1="90" x2="84" y2="192" stroke="#2d45e3" stroke-opacity=".35"/><line x1="118" y1="90" x2="118" y2="192" stroke="#2d45e3" stroke-opacity=".35"/><line x1="50" y1="124" x2="152" y2="124" stroke="#2d45e3" stroke-opacity=".35"/><line x1="50" y1="158" x2="152" y2="158" stroke="#2d45e3" stroke-opacity=".35"/><g stroke="#0b1310" stroke-opacity=".5"><line x1="50" y1="74" x2="152" y2="74"/><line x1="50" y1="69" x2="50" y2="79"/><line x1="152" y1="69" x2="152" y2="79"/></g><text x="101.0" y="66" text-anchor="middle" class="m">about 10 ft</text><text x="101.0" y="216" text-anchor="middle" font-weight="500">First size</text>
+<rect x="250" y="90" width="204" height="102" fill="#0b1310" fill-opacity="0.04" stroke="#0b1310" stroke-width="2.4" stroke-dasharray="7 6"/><line x1="284" y1="90" x2="284" y2="192" stroke="#0b1310" stroke-opacity=".35"/><line x1="318" y1="90" x2="318" y2="192" stroke="#0b1310" stroke-opacity=".35"/><line x1="352" y1="90" x2="352" y2="192" stroke="#0b1310" stroke-opacity=".35"/><line x1="386" y1="90" x2="386" y2="192" stroke="#0b1310" stroke-opacity=".35"/><line x1="420" y1="90" x2="420" y2="192" stroke="#0b1310" stroke-opacity=".35"/><line x1="250" y1="124" x2="454" y2="124" stroke="#0b1310" stroke-opacity=".35"/><line x1="250" y1="158" x2="454" y2="158" stroke="#0b1310" stroke-opacity=".35"/><g stroke="#0b1310" stroke-opacity=".5"><line x1="250" y1="74" x2="454" y2="74"/><line x1="250" y1="69" x2="250" y2="79"/><line x1="454" y1="69" x2="454" y2="79"/></g><text x="352.0" y="66" text-anchor="middle" class="m">about 20 ft</text><text x="352.0" y="216" text-anchor="middle" font-weight="500">Planned</text>
+<text x="300" y="272" text-anchor="middle" class="m">Each square is one panel. Walls are 8 ft high.</text></svg></div></section>
+</div><section class="vsec"><div class="wrap"><div class="head"><div><span class="eyebrow">Where it started</span><h2>Prototype v0, <em>running in Chennai.</em></h2></div><p>This is the first prototype we built to learn the climate system. The production POD grew from what it taught us, and looks different from this.</p></div>
+<div class="proto3"><figure class="pf"><img src="../assets/site/pod-exterior.jpg" alt="Prototype v0 exterior: insulated panels and an inspection window" loading="lazy"><figcaption>Prototype v0, exterior</figcaption></figure><figure class="pf"><img src="../assets/site/pod-interior.jpg" alt="Prototype v0 interior: white panel walls, cooling unit and vents" loading="lazy"><figcaption>Prototype v0, interior</figcaption></figure><figure class="pf"><img src="../assets/site/pod-diffuser.jpg" alt="Prototype v0 ceiling air distribution" loading="lazy"><figcaption>Prototype v0, overhead</figcaption></figure></div></div></section><section class="sec enquire" id="enquire">
+  <div class="wrap enq">
+    <div>
+      <span class="eyebrow">Enquire</span>
+      <h2 style="margin-top:16px">Talk to us about <em>POD 1.0.</em></h2>
+      <p class="s">Tell us what you grow and where. We reply with next steps for POD 1.0 or Humidifier 1.0. Growing something else? Tell us, and let's explore it together.</p>
+      <p class="addr">Akaththi Labs<br>Polichalur, Chennai<br>Tamil Nadu 600125, India</p>
     </div>
-  </footer>
+    <form id="f" novalidate>
+      <label for="fn">Your name<input id="fn" autocomplete="name"></label>
+      <label for="fo">Company or farm<input id="fo" autocomplete="organization"></label>
+      <label for="fc">Country<input id="fc" autocomplete="country-name"></label>
+      <label for="fi">Interested in
+        <select id="fi"><option>POD 1.0</option><option>Humidifier 1.0</option><option selected>POD 1.0 and Humidifier 1.0</option><option>A different crop</option><option>Automating something in agriculture</option></select>
+      </label>
+      <label for="fm">Tell us about your project<textarea id="fm" placeholder="Crop, scale, location, timeline"></textarea></label>
+      <button class="btn solid" type="submit" style="justify-self:start">Send enquiry</button>
+      <p class="note" id="note" role="status">Sending opens a public GitHub issue, so your message will be public. Leave out anything private.</p>
+    </form>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap"><span>© 2026 Akaththi Labs, a unit of Akaththi Farms Private Limited.</span><span>Powered by Kaani Intelligence · Patent pending · Designed in Chennai</span></div>
+  <div class="wrap fam"><span>Akaththi: <a href="https://akaththifarms.com/">Farms</a> · Labs · <a href="https://github.com/akaththi-research">Research</a></span></div>
+</footer>
+<script src="../assets/site/vendor/three.min.js"></script><script src="../assets/site/engine.js"></script><script src="../assets/site/kaani-stack.js"></script><script src="../assets/site/ui.js"></script><script src="../assets/site/pod.js"></script>
 </body>
 </html>
