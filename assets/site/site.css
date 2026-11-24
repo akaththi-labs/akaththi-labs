@@ -440,3 +440,13 @@ a.on,.fam3 a{text-decoration:none;color:inherit;display:block}.fam3 a:hover b{co
 footer a{text-decoration:none;color:inherit;border-bottom:1px solid var(--line)}footer a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 footer .fam{margin-top:10px}
 .pagehero.left h1{max-width:30ch}.spec2 dd{max-width:none}
+
+/* mobile menu */
+.burger{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;margin-left:auto;padding:0 9px;background:none;border:1px solid var(--line);border-radius:8px;cursor:pointer}
+.burger span{display:block;height:2px;background:var(--ink);transition:transform .2s,opacity .2s}
+.nav.open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav.open .burger span:nth-child(2){opacity:0}
+.nav.open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:859px){.nav.open ul{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;background:rgba(246,247,244,.98);border-bottom:1px solid var(--line);padding:8px 20px 14px}.nav.open ul a{display:block;padding:14px 0;font-size:17px;color:var(--ink);border-bottom:1px solid var(--line)}.nav.open ul li:last-child a{border-bottom:0}.nav ul a[aria-current]{color:var(--accent)}.nav .wrap>.btn{display:none}}
+@media(min-width:860px){.burger{display:none}}
+.nav .mq{display:none}@media(max-width:859px){.nav.open .mq{display:block}}
