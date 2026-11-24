@@ -8,7 +8,7 @@ def head(title,desc,three=True):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title}</title>
+<title>{title if 'living systems' in title else title+' · '+'Automation for living systems'}</title>
 <meta name="description" content="{desc}">
 <link rel="preload" href="fonts/martian-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -26,7 +26,7 @@ def nav(active=''):
     def a(h,t,k): return f'<li><a href="{h}"{" aria-current=\"page\"" if k==active else ""}>{t}</a></li>'
     return f'''<nav class="nav" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="index.html" aria-label="Akaththi Labs home">{LOGO}<span>Akaththi Labs</span><i class="cur" aria-hidden="true"></i><small>Agriculture technology and automation</small></a>
+    <a class="brand" href="index.html" aria-label="Akaththi Labs home">{LOGO}<span>Akaththi Labs</span><i class="cur" aria-hidden="true"></i><small>Automation for living systems</small></a>
     <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
     <ul id="mnav">{a("pod.html","POD","pod")}{a("humidifier.html","Humidifier","hum")}{a("kaani.html","Kaani","kaani")}{a("managed-farms.html","Managed farms","mf")}{a("about.html","About","about")}<li class="mq"><a href="index.html#enquire">Enquire</a></li></ul>
     <a class="btn" href="index.html#enquire">Enquire</a>

@@ -30,7 +30,7 @@ phone='''<div class="phone" aria-hidden="true"><h4>My farms</h4>
         <div class="r" style="--c:#e0457b"><i></i>Salem · Reishi<small>Normal</small></div>
         <div class="r" style="--c:#3a78c2"><i></i>Coimbatore · Lion’s mane<small>Normal</small></div></div>'''
 band=lambda n,t,sub,href:f'<section class="pband"><div class="wrap"><span class="eyebrow">{n}</span><h2>{t}</h2><p>{sub}</p><a class="btn" href="{href}">Open the {t.split()[0]} page →</a></div></section>\n'
-body=head('Akaththi Labs · Wherever you are. Grow on.','POD 1.0, a complete mushroom farm in a box, powered by Kaani Intelligence. A technology unit focused on agriculture technology and automation.',False)+nav('')+f'''<section class="tour" id="top" data-s="0">
+body=head('Akaththi Labs · Automation for living systems','POD 1.0, a complete mushroom farm in a box, powered by Kaani Intelligence. A technology unit building automation for living systems.',False)+nav('')+f'''<section class="tour" id="top" data-s="0">
   <div class="stick">
     <div class="viewer full" id="vwP">
       <canvas id="cvP" role="img" aria-label="Interactive 3D model of POD 1.0. Scroll to follow its story, or drag to rotate."></canvas>
