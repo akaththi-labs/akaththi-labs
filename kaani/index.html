@@ -22,10 +22,12 @@
 <nav class="nav" aria-label="Main">
   <div class="wrap">
     <a class="brand" href="../index.html" aria-label="Akaththi Labs home"><img src="../assets/mark.svg" alt="" width="28" height="28"><span>Akaththi Labs</span><i class="cur" aria-hidden="true"></i><small>Agriculture technology and automation</small></a>
-    <ul><li><a href="../pod/index.html">POD</a></li><li><a href="../humidifier/index.html">Humidifier</a></li><li><a href="../kaani/index.html" aria-current="page">Kaani</a></li><li><a href="../managed-farms/index.html">Managed farms</a></li><li><a href="../about/index.html">About</a></li></ul>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    <ul id="mnav"><li><a href="../pod/index.html">POD</a></li><li><a href="../humidifier/index.html">Humidifier</a></li><li><a href="../kaani/index.html" aria-current="page">Kaani</a></li><li><a href="../managed-farms/index.html">Managed farms</a></li><li><a href="../about/index.html">About</a></li><li class="mq"><a href="../index.html#enquire">Enquire</a></li></ul>
     <a class="btn" href="../index.html#enquire">Enquire</a>
   </div>
 </nav>
+<script>(function(){var n=document.querySelector('.nav'),b=n.querySelector('.burger');function c(){n.classList.remove('open');b.setAttribute('aria-expanded','false')}b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});n.querySelectorAll('ul a').forEach(function(a){a.addEventListener('click',c)});addEventListener('resize',function(){if(innerWidth>=860)c()});addEventListener('keydown',function(e){if(e.key==='Escape')c()})})()</script>
 <main>
 <section class="pagehero"><div class="wrap"><span class="eyebrow">Kaani Intelligence</span><h1>A complete farm <em>operating system.</em></h1><p>From crop planning through production, sales, marketing and efficiency.</p></div></section>
 <div class="wrap">
