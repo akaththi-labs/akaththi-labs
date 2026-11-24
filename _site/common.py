@@ -21,15 +21,18 @@ def head(title,desc,three=True):
 </head>
 <body>
 '''
+NAVJS='''<script>(function(){var n=document.querySelector('.nav'),b=n.querySelector('.burger');function c(){n.classList.remove('open');b.setAttribute('aria-expanded','false')}b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});n.querySelectorAll('ul a').forEach(function(a){a.addEventListener('click',c)});addEventListener('resize',function(){if(innerWidth>=860)c()});addEventListener('keydown',function(e){if(e.key==='Escape')c()})})()</script>'''
 def nav(active=''):
     def a(h,t,k): return f'<li><a href="{h}"{" aria-current=\"page\"" if k==active else ""}>{t}</a></li>'
     return f'''<nav class="nav" aria-label="Main">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="Akaththi Labs home">{LOGO}<span>Akaththi Labs</span><i class="cur" aria-hidden="true"></i><small>Agriculture technology and automation</small></a>
-    <ul>{a("pod.html","POD","pod")}{a("humidifier.html","Humidifier","hum")}{a("kaani.html","Kaani","kaani")}{a("managed-farms.html","Managed farms","mf")}{a("about.html","About","about")}</ul>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    <ul id="mnav">{a("pod.html","POD","pod")}{a("humidifier.html","Humidifier","hum")}{a("kaani.html","Kaani","kaani")}{a("managed-farms.html","Managed farms","mf")}{a("about.html","About","about")}<li class="mq"><a href="index.html#enquire">Enquire</a></li></ul>
     <a class="btn" href="index.html#enquire">Enquire</a>
   </div>
 </nav>
+{NAVJS}
 <main>
 '''
 def enquire(title='Talk to us about <em>your farm.</em>'):

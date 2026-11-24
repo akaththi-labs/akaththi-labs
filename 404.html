@@ -22,10 +22,12 @@
 <nav class="nav" aria-label="Main">
   <div class="wrap">
     <a class="brand" href="/akaththi-labs/index.html" aria-label="Akaththi Labs home"><img src="/akaththi-labs/assets/mark.svg" alt="" width="28" height="28"><span>Akaththi Labs</span><i class="cur" aria-hidden="true"></i><small>Agriculture technology and automation</small></a>
-    <ul><li><a href="/akaththi-labs/pod/index.html">POD</a></li><li><a href="/akaththi-labs/humidifier/index.html">Humidifier</a></li><li><a href="/akaththi-labs/kaani/index.html">Kaani</a></li><li><a href="/akaththi-labs/managed-farms/index.html">Managed farms</a></li><li><a href="/akaththi-labs/about/index.html">About</a></li></ul>
+    <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    <ul id="mnav"><li><a href="/akaththi-labs/pod/index.html">POD</a></li><li><a href="/akaththi-labs/humidifier/index.html">Humidifier</a></li><li><a href="/akaththi-labs/kaani/index.html">Kaani</a></li><li><a href="/akaththi-labs/managed-farms/index.html">Managed farms</a></li><li><a href="/akaththi-labs/about/index.html">About</a></li><li class="mq"><a href="/akaththi-labs/index.html#enquire">Enquire</a></li></ul>
     <a class="btn" href="/akaththi-labs/index.html#enquire">Enquire</a>
   </div>
 </nav>
+<script>(function(){var n=document.querySelector('.nav'),b=n.querySelector('.burger');function c(){n.classList.remove('open');b.setAttribute('aria-expanded','false')}b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});n.querySelectorAll('ul a').forEach(function(a){a.addEventListener('click',c)});addEventListener('resize',function(){if(innerWidth>=860)c()});addEventListener('keydown',function(e){if(e.key==='Escape')c()})})()</script>
 <main>
 <section class="pagehero left"><div class="wrap"><span class="eyebrow">404</span><h1>Page <em>not found.</em></h1><p class="prompt"><span class="ps">$</span>labs open this-page<span class="cursor"></span></p><p>That address does not lead anywhere. Start from the <a href="/akaththi-labs/index.html">home page</a>, or choose a product from the menu.</p></div></section></main>
 <footer>
